@@ -67,7 +67,7 @@ const NavBar = ({history}) => {
     history.push("/")
   }
 
-  const handleSubmit = () => {
+  const Submit = () => {
     history.push("/Home")
   }
 
@@ -77,7 +77,7 @@ const NavBar = ({history}) => {
         <Toolbar>
           
           <Typography className={classes.title} variant="h6" noWrap>
-            <Button color="inherit" onSubmit={handleSubmit}>BlogPost </Button>
+            <Button color="inherit" onClick={Submit}>BlogPost </Button>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

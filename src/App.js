@@ -12,6 +12,7 @@ function App() {
     <div >
       <Switch>
         <Route exact path='/' component={LogIn} />
+        <Route  exact path="/Home" component={Bloggers} />
         <Route  path="/Home" component={Bloggers} />
         <Route path="/Create" component={WriteBlog} />
         <Route path="/" component={LogIn} />

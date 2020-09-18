@@ -7,6 +7,7 @@ import BlogItem from './BlogItem';
 
 
 const Body = () => {
+  
   const {blogup, toggleBlog, deleteBlog} = useContext(BlogContext);
   
   
@@ -14,13 +15,13 @@ const Body = () => {
       
     <div>
       <div>
-        {blogup.map(blog => (
+        {blogup && blogup.map(blog => (
         <BlogItem 
-            key={blog.id} 
-            text={blog.text} 
-            clickToToggle={() => toggleBlog(blog.id)} 
-            clickToDelete={() => deleteBlog(blog.id)}
-            complete={blog.complete}
+          key={blog.id}
+          text={blog.text} 
+          clickToToggle={() => toggleBlog(blog.id)} 
+          clickToDelete={() => deleteBlog(blog.id)}
+          complete={blog.complete}
         />
         ) 
         )}

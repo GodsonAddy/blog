@@ -26,19 +26,20 @@ const CreateBlog = () => {
 
     function handleChange(e) {
         setBlog(e.target.value)
+       
     }
-    
+
     return (  
         <div>
             <div style={{margin: "60px"}}>
-                <center>
-                    <form onClick={handleClick} >
+                <form>
+                    <center>
                         <textarea type="text" value={blog} onChange={handleChange}/>
-                        <Button variant="contained" color="primary" type="submit" >
+                        <Button variant="contained" color="primary" type="submit" onClick={handleClick}>
                             SUBMIT  
                         </Button>
-                    </form>  
-                </center>      
+                    </center>  
+                </form>      
             </div>   
         </div>        
     )

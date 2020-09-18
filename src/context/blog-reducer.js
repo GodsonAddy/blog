@@ -1,6 +1,7 @@
 import  {ADD_BLOG, TOGGLE_BLOG, DELETE_BLOG} from './blog-actions';
 
-const BlogReducer = (action, state) => {
+
+const BlogReducer = (state, action) => {
     switch(action.type) {
         case ADD_BLOG :
             return {

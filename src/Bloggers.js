@@ -3,6 +3,7 @@ import Main from './Main';
 import Footer from './Footer';
 import NavBar from './NavBar';
 import Body from './Body';
+import BlogState from './context/BlogState';
 
 
 
@@ -12,7 +13,9 @@ const Bloggers = () => {
         <div>
            <NavBar />
            <Main />
-           <Body />
+           <BlogState>
+            <Body />
+           </BlogState>
            <Footer />
         </div>
     )
