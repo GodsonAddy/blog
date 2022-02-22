@@ -1,3 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+.home{
+  position: relative;
+  min-height: 100vh;
+}
 .container{
   position: relative;
   text-align: center;
@@ -8,7 +22,10 @@
   background-color: black;
   color: white;
   display: flex;
-  height: 100px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 .copy{
   display: flex;
@@ -46,6 +63,5 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font: bold 24px/45px Helvetica, Sans-Serif;
 }
  

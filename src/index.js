@@ -4,12 +4,47 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
+import {Provider} from 'react-redux';
+import {store, persistor} from './store'
+import { unstable_createMuiStrictModeTheme as createTheme } from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
+import { PersistGate } from 'redux-persist/integration/react';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
+const theme = createTheme({
+  typography: {
+    button: {
+      textTransform: 'none'
+    },
+    fontFamily: [
+      'Poppins',
+   ].join(',')
+  },
+  palette: {
+    primary: {
+      main: '#000'
+    },
+    secondary: {
+      main: '#fff'
+    },
+    tertiary: {
+      main: '#94E4C9'
+    }
+  }
+})
 
 ReactDOM.render(
   <React.StrictMode>
-  <Router>
-    <App />
-    </Router>
+    <Provider store={store} >
+      <ThemeProvider theme={theme}>
+        <Router>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </Router>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

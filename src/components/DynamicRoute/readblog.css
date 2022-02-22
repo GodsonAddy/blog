@@ -1,0 +1,21 @@
+
+.capital {
+    
+        text-indent: 2em;
+        
+        font-size: 3em;
+        font-weight: bold;
+        
+  
+}
+.capital:first-letter{
+    text-transform: capitalize;
+    font-size: 2em;
+        font-weight: bold;
+}
+
+.header:first-letter{
+        text-transform: capitalize;
+        font-size: 2em;
+            font-weight: bold;
+    }
