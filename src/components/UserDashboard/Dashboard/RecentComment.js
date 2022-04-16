@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { List, ListSubheader, Button } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
@@ -7,7 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
-export default function AlignItemsList() {
+export default function RecentComment() {
   return (
     <List
       dense
@@ -22,7 +22,7 @@ export default function AlignItemsList() {
       }}
       subheader={
         <ListSubheader sx={{ typography: "h6", fontWeight: 700 }}>
-          Trending Topics
+          Recent Comments
         </ListSubheader>
       }
     >
@@ -31,20 +31,20 @@ export default function AlignItemsList() {
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary="Brunch this weekend?"
+          primary="Ali Connors"
           secondary={
             <React.Fragment>
+              {"has commented"}
               <Typography
                 sx={{ display: "inline" }}
                 component="span"
                 variant="body2"
                 color="text.primary"
               >
-                Ali Connors
+                I'll be in your neighborhood doing errands this…
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
               <br />
-              <Button color="info">200 Comments</Button>
+              <Button color="info">Reply</Button>
             </React.Fragment>
           }
         />
@@ -55,20 +55,20 @@ export default function AlignItemsList() {
           <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary="Summer BBQ"
+          primary="Ali Connors"
           secondary={
             <React.Fragment>
+              {"has commented"}
               <Typography
                 sx={{ display: "inline" }}
                 component="span"
                 variant="body2"
                 color="text.primary"
               >
-                to Scott, Alex, Jennifer
+                I'll be in your neighborhood doing errands this…
               </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
               <br />
-              <Button color="info">200 Comments</Button>
+              <Button color="info">Reply</Button>
             </React.Fragment>
           }
         />
@@ -79,20 +79,20 @@ export default function AlignItemsList() {
           <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary="Oui Oui"
+          primary="Ali Connors"
           secondary={
             <React.Fragment>
+              {"has commented"}
               <Typography
                 sx={{ display: "inline" }}
                 component="span"
                 variant="body2"
                 color="text.primary"
               >
-                Sandra Adams
+                I'll be in your neighborhood doing errands this…
               </Typography>
-              {" — Do you have Paris recommendations? Have you ever…"}
               <br />
-              <Button color="info">200 Comments</Button>
+              <Button color="info">Reply</Button>
             </React.Fragment>
           }
         />

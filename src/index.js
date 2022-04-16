@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
-import {Provider} from 'react-redux';
-import {store, persistor} from './store'
+import { Provider } from 'react-redux';
+import { store, persistor } from './store'
 import { unstable_createMuiStrictModeTheme as createTheme } from '@mui/material/styles';
-import {ThemeProvider} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { PersistGate } from 'redux-persist/integration/react';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const theme = createTheme({
@@ -19,10 +19,10 @@ const theme = createTheme({
     },
     fontFamily: [
       'Poppins',
-   ].join(',')
+    ].join(',')
   },
   palette: {
-    primary: {
+    junior: {
       main: '#000'
     },
     secondary: {
@@ -37,13 +37,15 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} >
-      <ThemeProvider theme={theme}>
-        <Router>
-          <PersistGate persistor={persistor}>
+
+      <Router>
+        <PersistGate persistor={persistor}>
+          <ThemeProvider theme={theme}>
             <App />
-          </PersistGate>
-        </Router>
-      </ThemeProvider>
+          </ThemeProvider>
+        </PersistGate>
+      </Router>
+
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

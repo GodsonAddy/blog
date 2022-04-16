@@ -1,14 +1,24 @@
-import React, { useState} from "react";
-import {TextField, Alert, Checkbox, Grid, Box, Typography} from "@mui/material";
-import {Collapse, Container, CssBaseline, FormControlLabel} from "@mui/material";
+import React, { useState } from "react";
+import {
+  TextField,
+  Alert,
+  Checkbox,
+  Grid,
+  Box,
+  Typography,
+} from "@mui/material";
+import {
+  Collapse,
+  Container,
+  CssBaseline,
+  FormControlLabel,
+} from "@mui/material";
 import { withRouter, NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../actions/userAction";
 import { errorDeleted } from "../../actions/errorAction";
 import LoadingButton from "@mui/lab/LoadingButton";
-
-
 
 const helperTextStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +34,6 @@ const initialFormValues = {
   last_name: "",
 };
 
-
 function SignUp() {
   const helperTestClasses = helperTextStyles();
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -36,7 +45,7 @@ function SignUp() {
 
   const dispatch = useDispatch();
 
-  const { validator} = useSelector(state => state.errorAuth);
+  const { validator } = useSelector((state) => state.errorAuth);
 
   const handleSignUp = (e) => {
     const { name, value } = e.target;
@@ -59,61 +68,65 @@ function SignUp() {
   const closeAlert = () => {
     dispatch(errorDeleted());
     setOpen(false);
-    setFormValues(prev => ({...prev, ...initialFormValues}));
-    window.location.reload()
-  }
+    setFormValues((prev) => ({ ...prev, ...initialFormValues }));
+    window.location.reload();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    const { email, password, first_name, last_name } = formValues;
-    const payload = {email, password, first_name, last_name }
-    console.log(payload);
-    
-    if(!formValues.first_name) {
-      setSignUpError((prev) => {
-        return {...prev, first_name: "First name is required"}
-      }); return
-    }
-      if(!formValues.last_name) {
-        setSignUpError((prev) => {
-          return {...prev, last_name: "Last name is required"}
-        }); return
-    }
-    if(!formValues.email) {
-      setSignUpError((prev) => {
-        return {...prev, email: "Email is required"}
-      }); return
-    }
-      if(!formValues.password) {
-        setSignUpError((prev) => {
-          return {...prev, password: "Password is required"}
-        }); return
-    }
-   setLoader(true);
-   setDisabled(true);
-   dispatch(register(formValues))
-   .then((res) => {
-     console.log(res);
-     setLoader(false);
-     setShowAlert(true);
-     setFormValues(initialFormValues);
-   })
-   .catch((err) => {
-     console.log(err);
-     setLoader(false);
-     setShowAlert(false);
-     setFormValues(initialFormValues);
 
-   })
+    const { email, password, first_name, last_name } = formValues;
+    const payload = { email, password, first_name, last_name };
+    console.log(payload);
+
+    if (!formValues.first_name) {
+      setSignUpError((prev) => {
+        return { ...prev, first_name: "First name is required" };
+      });
+      return;
+    }
+    if (!formValues.last_name) {
+      setSignUpError((prev) => {
+        return { ...prev, last_name: "Last name is required" };
+      });
+      return;
+    }
+    if (!formValues.email) {
+      setSignUpError((prev) => {
+        return { ...prev, email: "Email is required" };
+      });
+      return;
+    }
+    if (!formValues.password) {
+      setSignUpError((prev) => {
+        return { ...prev, password: "Password is required" };
+      });
+      return;
+    }
+    setLoader(true);
+    setDisabled(true);
+    dispatch(register(formValues))
+      .then((res) => {
+        console.log(res);
+        setLoader(false);
+        setShowAlert(true);
+        setFormValues(initialFormValues);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoader(false);
+        setShowAlert(false);
+        setFormValues(initialFormValues);
+      });
   };
 
   return (
     <Container component="main">
-    
       <CssBaseline />
-        
-      <Typography variant="h4">vibes<sup>&reg;</sup></Typography>
+
+      <Typography variant="h4">
+        vibes<sup>&reg;</sup>
+      </Typography>
 
       <Grid
         container
@@ -125,9 +138,7 @@ function SignUp() {
           justifyContent: "center",
         }}
       >
-
         <Grid item xs={8} sm={8} md={5}>
-
           <Box
             sx={{
               my: 8,
@@ -135,10 +146,9 @@ function SignUp() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              mt: 6
+              mt: 6,
             }}
           >
-
             <Collapse in={open}>
               {validator.msg && (
                 <Alert
@@ -150,7 +160,10 @@ function SignUp() {
               )}
             </Collapse>
 
-            <Typography component="h1" variant="h3"> Sign up</Typography>
+            <Typography component="h1" variant="h3">
+              {" "}
+              Sign up
+            </Typography>
 
             <Box
               component="form"
@@ -158,9 +171,7 @@ function SignUp() {
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
-
               <Grid container spacing={2}>
-
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="fname"
@@ -235,7 +246,6 @@ function SignUp() {
                     label="I want to receive inspiration, marketing promotions and updates via email."
                   />
                 </Grid>
-
               </Grid>
 
               <LoadingButton
@@ -249,7 +259,6 @@ function SignUp() {
               </LoadingButton>
 
               <Grid container justifyContent="flex-end">
-
                 <Grid item>
                   <NavLink
                     to="/login"
@@ -259,13 +268,11 @@ function SignUp() {
                     Already have an account? Sign in
                   </NavLink>
                 </Grid>
-
               </Grid>
             </Box>
           </Box>
         </Grid>
       </Grid>
-      
     </Container>
   );
 }

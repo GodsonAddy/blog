@@ -24,31 +24,34 @@ function BlogCards2() {
 
   useEffect(() => {
     dispatch(fetchBlogs());
-    allBlogs.unshift(userBlogs);
+    //allBlogs.unshift(userBlogs);
   }, []);
 
   //const reduceWords = (str) => {
-    //return str.length > 300 ? str.substring(0, 220) + "..." : str;
+  //return str.length > 300 ? str.substring(0, 220) + "..." : str;
   //};
 
   return (
     <>
       {allBlogs.map((blog) => (
-        <Grid item xs={8} sm={6} key={blog.id} style={{display: 'flex'}}>
+        <Grid item  key={blog.id} style={{ display: "flex" }}>
           <Card
             variant="outlined"
             sx={{
               maxWidth: 345,
               mb: 2,
               pb: 2,
-              '&:hover': {backgroundColor: 'silver[400]',
-                    transform: 'scale(1.01)', 
-                    boxShadow: '1px 1px 30px silver'
-                }
+              "&:hover": {
+                backgroundColor: "silver[400]",
+                transform: "scale(1.01)",
+                boxShadow: "1px 1px 30px silver",
+              },
             }}
-            
           >
-            <CardActionArea  LinkComponent={Link} to={`/blog/${blog.id}/${blog.title}`}>
+            <CardActionArea
+              LinkComponent={Link}
+              to={`/blog/${blog.id}/${blog.title}`}
+            >
               <CardHeader
                 title={<Typography> {blog.title}</Typography>}
                 subheader="September 14, 2016"
@@ -68,22 +71,22 @@ function BlogCards2() {
                   {blog.body}
                 </Typography>
               </CardContent>
-            
-            <CardActions>
-              <Stack
-                display="flex"
-                direction="row"
-                spacing={8}
-                justifyContent="space-evenly"
-                alignItems="center"
-              >
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  R
-                </Avatar>
-                <Typography variant="body2">Blogger Name</Typography>
-                <Chip icon={<VisibilityIcon />} label="100" />
-              </Stack>
-            </CardActions>
+
+              <CardActions>
+                <Stack
+                  display="flex"
+                  direction="row"
+                  spacing={8}
+                  justifyContent="space-evenly"
+                  alignItems="center"
+                >
+                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                    R
+                  </Avatar>
+                  <Typography variant="body2">Blogger Name</Typography>
+                  <Chip icon={<VisibilityIcon />} label="100" />
+                </Stack>
+              </CardActions>
             </CardActionArea>
           </Card>
         </Grid>

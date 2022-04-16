@@ -2,7 +2,7 @@ import  {ADD_BLOG, LIKE_BLOG, DELETE_BLOG, FETCH_BLOG, COMMENT_BLOG} from '../ac
 
 const initialState = {
     allBlogs: [],
-    userBlogs: {}
+    userBlogs: []
 }
 
 const blogReducer = (state = initialState, action) => {
