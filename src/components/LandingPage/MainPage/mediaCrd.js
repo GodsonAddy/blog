@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import vibes from "../../../images/vibes.png"
 
 function MediaCard() {
   return (
@@ -13,15 +14,14 @@ function MediaCard() {
         component="img"
         alt="green iguana"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={vibes}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          VIBES
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          VIBES is a blog page purposely for our everyday activities
         </Typography>
       </CardContent>
       <CardActions>

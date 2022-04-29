@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import BlogCards2 from "./blogCards2";
 import MediaCard from "./mediaCrd";
 import ListCards from "./ListCards";
@@ -21,15 +21,15 @@ function MainPage() {
         justifyContent="space-between"
       >
         <Grid item xs={12} sm={8}>
-        <Grid
-          container
-          sx={{
-            flex: 1,
-          }}
-          spacing={1}
-        >
-          <BlogCards2 />
-        </Grid>
+          <Grid
+            container
+            sx={{
+              flex: 1,
+            }}
+            spacing={1}
+          >
+            <BlogCards2 />
+          </Grid>
         </Grid>
 
         <Grid item style={{ display: "flex" }} marginTop={2} xs={12} sm={3}>

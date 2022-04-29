@@ -13,17 +13,22 @@ import {
   Paper,
   Menu,
   MenuItem,
+  CssBaseline,
+  Avatar,
+  ListItemText,
+  ListItemIcon
 } from "@mui/material";
 import { makeStyles } from '@mui/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+//import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchIcon from "@mui/icons-material/Search";
 import { logout } from "../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import Logout from '@mui/icons-material/Logout';
 
 const pages = ["ABOUT", "NEWS", "BLOGS"];
-const theme = createTheme();
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-     //vertical padding + font size from searchIcon
+    //vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -96,7 +101,8 @@ export default function NavigationBar({ history, children }, props) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <Box>
+      <CssBaseline />
       <Box sx={{ marginTop: 10, marginBottom: 10 }}>
         <Grid
           container
@@ -130,10 +136,10 @@ export default function NavigationBar({ history, children }, props) {
               elevation={3}
             >
               <InputBase
-                sx={{ 
+                sx={{
                   ml: 1,
                   flex: 1,
-                
+
                 }}
                 placeholder="Search for blogs..."
                 inputProps={{ "aria-label": "search for blogs..." }}
@@ -151,8 +157,8 @@ export default function NavigationBar({ history, children }, props) {
 
       {/* App Bar */}
 
-      <div>
-        <AppBar position="static" color="secondary">
+      <Box>
+        <AppBar position="static" >
           <Container maxWidth="xl">
             <Toolbar disableGutters id="back-to-top-anchor">
               <Button
@@ -162,6 +168,8 @@ export default function NavigationBar({ history, children }, props) {
                   display: { xs: "none", md: "flex" },
                   fontWeight: 700,
                 }}
+                color="secondary"
+                href="/"
               >
                 HOME
               </Button>
@@ -173,7 +181,7 @@ export default function NavigationBar({ history, children }, props) {
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenNavMenu}
-                  color="inherit"
+                  color="secondary"
                 >
                   <MenuIcon />
                 </IconButton>
@@ -213,6 +221,8 @@ export default function NavigationBar({ history, children }, props) {
                   display: { xs: "flex", md: "none" },
                   fontWeight: 700,
                 }}
+                color="secondary"
+                href="/"
               >
                 HOME
               </Button>
@@ -223,10 +233,10 @@ export default function NavigationBar({ history, children }, props) {
                     onClick={handleCloseNavMenu}
                     sx={{
                       my: 2,
-                      color: "primary",
                       display: "block",
                       fontWeight: 700,
                     }}
+                    color="secondary"
                   >
                     {page}
                   </Button>
@@ -236,7 +246,7 @@ export default function NavigationBar({ history, children }, props) {
               <div>
                 {userAuth ? (
                   <Button
-                    color="tertiary"
+                    color="secondary"
                     variant="contained"
                     onClick={loginClick}
                   >
@@ -251,32 +261,66 @@ export default function NavigationBar({ history, children }, props) {
                     onClick={handleMenu}
                     color="inherit"
                   >
-                    <AccountCircle />
+                    <AccountCircle color="secondary" />
                   </IconButton>
                 )}
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
+
                   keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
+
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
+
+                  PaperProps={{
+                    elevation: 0,
+                    sx: {
+                      overflow: 'visible',
+                      filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                      mt: 1.5,
+
+                      '& .MuiAvatar-root': {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      '&:before': {
+                        content: '""',
+                        display: 'block',
+                        position: 'absolute',
+                        top: 0,
+                        right: 14,
+                        width: 10,
+                        height: 10,
+                        bgcolor: 'background.paper',
+                        transform: 'translateY(-50%) rotate(45deg)',
+                        zIndex: 0,
+                      },
+                    },
+                  }}
+                  transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                  anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                  <MenuItem onClick={userAccount}>My Dashboard</MenuItem>
-                  <MenuItem onClick={loginClick}>LOGOUT</MenuItem>
+                  <MenuItem onClick={userAccount}>
+                    <ListItemIcon>
+                      <Avatar />
+                    </ListItemIcon>
+                    <ListItemText>My Dashboard</ListItemText>
+
+                  </MenuItem>
+                  <MenuItem onClick={loginClick}>
+                    <ListItemIcon> <Logout fontSize="small" /></ListItemIcon>
+                    <ListItemText>Logout</ListItemText>
+
+                  </MenuItem>
                 </Menu>
               </div>
             </Toolbar>
           </Container>
         </AppBar>
-      </div>
-    </ThemeProvider>
+      </Box>
+    </Box>
   );
 }

@@ -15,21 +15,25 @@ import "slick-carousel/slick/slick-theme.css";
 const theme = createTheme({
   typography: {
     button: {
-      textTransform: 'none'
+      textTransform: 'none',
     },
     fontFamily: [
       'Poppins',
-    ].join(',')
+    ].join(','),
+    palette: {
+      primary: '#FFFFFF',
+      secondary: '4A4D4E'
+    }
   },
   palette: {
-    junior: {
-      main: '#000'
+    primary: {
+      main: "#00b8d4"
     },
     secondary: {
       main: '#fff'
     },
     tertiary: {
-      main: '#94E4C9'
+      main: '#000'
     }
   }
 })
@@ -37,15 +41,13 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} >
-
       <Router>
-        <PersistGate persistor={persistor}>
-          <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <PersistGate persistor={persistor}>
             <App />
-          </ThemeProvider>
-        </PersistGate>
+          </PersistGate>
+        </ThemeProvider>
       </Router>
-
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

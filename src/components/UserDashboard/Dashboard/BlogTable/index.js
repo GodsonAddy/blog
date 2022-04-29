@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Button, Grid, Tooltip, CircularProgress } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import "../index.css";
-import {DeleteDialog} from './util';
+import { DeleteDialog } from './util';
 
 
 
@@ -14,7 +14,6 @@ import {DeleteDialog} from './util';
 function BlogTable() {
 
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const { allBlogs } = useSelector((state) => state.blogs);
 
@@ -29,15 +28,15 @@ function BlogTable() {
 
 
   const columns = [
-    { field: "id", headerName: "ID",  },
+    { field: "id", headerName: "ID", },
     {
       field: "title",
       headerName: "Blog Title",
       width: 180,
-      renderCell: (params) =>  (
-       <Tooltip title={params.row.title} >
-       <span className="table-cell-trucate">{params.row.title}</span>
-       </Tooltip>
+      renderCell: (params) => (
+        <Tooltip title={params.row.title} >
+          <span className="table-cell-trucate">{params.row.title}</span>
+        </Tooltip>
       ),
     },
     {
@@ -71,7 +70,7 @@ function BlogTable() {
       type: "number",
       width: 160,
     },
-  
+
     {
       field: "actions",
       headerName: "Actions",
@@ -83,25 +82,25 @@ function BlogTable() {
             <Tooltip title='Edit'>
               <EditIcon color="primary" />
             </Tooltip>
-          } 
+          }
           label="Edit"
         />,
         <GridActionsCellItem
           icon={
             <Tooltip title='Delete'>
-              <DeleteIcon color="error" onClick={handleClickOpen}/>
-              
+              <DeleteIcon color="error" onClick={handleClickOpen} />
+
             </Tooltip>
-            
+
           }
-          
+
           label="Delete"
         />,
-        
+
       ],
     },
   ];
-  
+
 
   return (
     <div style={{ height: 400, width: "100%" }}>
@@ -134,11 +133,11 @@ function BlogTable() {
             sx={{
               "& .MuiDataGrid-cell:hover": {
                 color: "primary.main",
-                
+
               },
             }}
-            loading={loading}
-            
+            loading
+
           />
           <DeleteDialog open={open} handleClose={handleClose} />
         </div>

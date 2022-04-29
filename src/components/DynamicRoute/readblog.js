@@ -7,8 +7,6 @@ import {
   Button,
   IconButton,
   ButtonGroup,
-  Card,
-  TextField,
   OutlinedInput,
   Divider,
 } from "@mui/material";
@@ -30,6 +28,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box } from "@mui/system";
+import vibes from "../../images/vibes.png";
+
+
 
 const Img = styled("img")({
   margin: "auto",
@@ -91,7 +92,7 @@ function ReadFullBlog(props) {
     <>
       <NavigationBar />
       <Container
-        sx={{ backgroundColor: "tertiary.main", mb: 5, maxHeight: "100%" }}
+        sx={{ backgroundColor: "secondary.main", mb: 5, maxHeight: "100%" }}
       >
         <Grid
           container
@@ -217,7 +218,8 @@ function ReadFullBlog(props) {
 
                 <Grid item sx={{ marginTop: 6 }}>
                   <img
-                    src={data.imgPath ? data.imgPath : null}
+                    src={vibes}
+                    style={{ height: '10rem', width: '51rem' }}
                     alt={data.title}
                   />
                 </Grid>
@@ -231,170 +233,171 @@ function ReadFullBlog(props) {
             </Paper>
           </Grid>
         </Grid>
+        <Box sx={{ bgcolor: "silver", pb: 5 }}>
+          <Typography variant="h6" color="secondary"> Recommended For You: </Typography>
+          <Box sx={{ my: 8 }}>
+            <Slider {...settings}>
+              <div>
+                <Paper
+                  sx={{
+                    p: 2,
+                    margin: "auto",
+                    maxWidth: 500,
+                    flexGrow: 1,
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+                  }}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item>
+                      <ButtonBase sx={{ width: 128, height: 128 }}>
+                        <Img
+                          alt="complex"
+                          src={vibes}
+                        />
+                      </ButtonBase>
+                    </Grid>
 
-        <Typography variant="h6"> Recommended For You: </Typography>
-        <Box sx={{ my: 8 }}>
-          <Slider {...settings}>
-            <div>
-              <Paper
-                sx={{
-                  p: 2,
-                  margin: "auto",
-                  maxWidth: 500,
-                  flexGrow: 1,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item>
-                    <ButtonBase sx={{ width: 128, height: 128 }}>
-                      <Img
-                        alt="complex"
-                        src="/static/images/grid/complex.jpg"
-                      />
-                    </ButtonBase>
-                  </Grid>
+                    <Grid item>
+                      <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
+                    </Grid>
 
-                  <Grid item>
-                    <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
-                  </Grid>
+                    <Grid item xs={12} sm container>
+                      <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs>
+                          <Typography
+                            gutterBottom
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            Standard license
+                          </Typography>
+                          <Typography variant="body2" gutterBottom>
+                            Full resolution 1920x1080 • JPEG
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            ID: 1030114
+                          </Typography>
+                        </Grid>
 
-                  <Grid item xs={12} sm container>
-                    <Grid item xs container direction="column" spacing={2}>
-                      <Grid item xs>
-                        <Typography
-                          gutterBottom
-                          variant="subtitle1"
-                          component="div"
-                        >
-                          Standard license
-                        </Typography>
-                        <Typography variant="body2" gutterBottom>
-                          Full resolution 1920x1080 • JPEG
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          ID: 1030114
-                        </Typography>
-                      </Grid>
-
-                      <Grid item>
-                        <Button variant="text" color="info">
-                          Read
-                        </Button>
+                        <Grid item>
+                          <Button variant="text" color="info">
+                            Read
+                          </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-              </Paper>
-            </div>
-            <div>
-              <Paper
-                sx={{
-                  p: 2,
-                  margin: "auto",
-                  maxWidth: 500,
-                  flexGrow: 1,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item>
-                    <ButtonBase sx={{ width: 128, height: 128 }}>
-                      <Img
-                        alt="complex"
-                        src="/static/images/grid/complex.jpg"
-                      />
-                    </ButtonBase>
-                  </Grid>
+                </Paper>
+              </div>
+              <div>
+                <Paper
+                  sx={{
+                    p: 2,
+                    margin: "auto",
+                    maxWidth: 500,
+                    flexGrow: 1,
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+                  }}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item>
+                      <ButtonBase sx={{ width: 128, height: 128 }}>
+                        <Img
+                          alt="complex"
+                          src={vibes}
+                        />
+                      </ButtonBase>
+                    </Grid>
 
-                  <Grid item>
-                    <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
-                  </Grid>
+                    <Grid item>
+                      <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
+                    </Grid>
 
-                  <Grid item xs={12} sm container>
-                    <Grid item xs container direction="column" spacing={2}>
-                      <Grid item xs>
-                        <Typography
-                          gutterBottom
-                          variant="subtitle1"
-                          component="div"
-                        >
-                          Standard license
-                        </Typography>
-                        <Typography variant="body2" gutterBottom>
-                          Full resolution 1920x1080 • JPEG
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          ID: 1030114
-                        </Typography>
-                      </Grid>
+                    <Grid item xs={12} sm container>
+                      <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs>
+                          <Typography
+                            gutterBottom
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            Standard license
+                          </Typography>
+                          <Typography variant="body2" gutterBottom>
+                            Full resolution 1920x1080 • JPEG
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            ID: 1030114
+                          </Typography>
+                        </Grid>
 
-                      <Grid item>
-                        <Button variant="text" color="info">
-                          Read
-                        </Button>
+                        <Grid item>
+                          <Button variant="text" color="info">
+                            Read
+                          </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-              </Paper>
-            </div>
-            <div>
-              <Paper
-                sx={{
-                  p: 2,
-                  margin: "auto",
-                  maxWidth: 500,
-                  flexGrow: 1,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item>
-                    <ButtonBase sx={{ width: 128, height: 128 }}>
-                      <Img
-                        alt="complex"
-                        src="/static/images/grid/complex.jpg"
-                      />
-                    </ButtonBase>
-                  </Grid>
+                </Paper>
+              </div>
+              <div>
+                <Paper
+                  sx={{
+                    p: 2,
+                    margin: "auto",
+                    maxWidth: 500,
+                    flexGrow: 1,
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+                  }}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item>
+                      <ButtonBase sx={{ width: 128, height: 128 }}>
+                        <Img
+                          alt="complex"
+                          src={vibes}
+                        />
+                      </ButtonBase>
+                    </Grid>
 
-                  <Grid item>
-                    <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
-                  </Grid>
+                    <Grid item>
+                      <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
+                    </Grid>
 
-                  <Grid item xs={12} sm container>
-                    <Grid item xs container direction="column" spacing={2}>
-                      <Grid item xs>
-                        <Typography
-                          gutterBottom
-                          variant="subtitle1"
-                          component="div"
-                        >
-                          Standard license
-                        </Typography>
-                        <Typography variant="body2" gutterBottom>
-                          Full resolution 1920x1080 • JPEG
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          ID: 1030114
-                        </Typography>
-                      </Grid>
+                    <Grid item xs={12} sm container>
+                      <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs>
+                          <Typography
+                            gutterBottom
+                            variant="subtitle1"
+                            component="div"
+                          >
+                            Standard license
+                          </Typography>
+                          <Typography variant="body2" gutterBottom>
+                            Full resolution 1920x1080 • JPEG
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            ID: 1030114
+                          </Typography>
+                        </Grid>
 
-                      <Grid item>
-                        <Button variant="text" color="info">
-                          Read
-                        </Button>
+                        <Grid item>
+                          <Button variant="text" color="info">
+                            Read
+                          </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-              </Paper>
-            </div>
-          </Slider>
+                </Paper>
+              </div>
+            </Slider>
+          </Box>
         </Box>
 
         <Grid
@@ -433,7 +436,7 @@ function ReadFullBlog(props) {
               alignItems="center"
               component={Paper}
               direction="row"
-              
+
               sx={{
                 my: 5,
               }}
@@ -444,35 +447,35 @@ function ReadFullBlog(props) {
               </Grid>
 
               <Grid item>
-              
-                  <Grid
-                    container
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    direction="column"
-                    sx={{
-                      my: 5,
-                    }}
-                    spacing={2}
-                  >
-                    <Grid item>
-                      <Typography>Name</Typography>
-                    </Grid>
 
-                    <Divider flexItem variant="fullWidth" />
-
-                    <Grid item gutterBottom>
-                      Contents
-                    </Grid>
-
-                    <Grid item>
-                      <Button variant="contained" color="info">
-                        Reply
-                      </Button>
-                    </Grid>
+                <Grid
+                  container
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  direction="column"
+                  sx={{
+                    my: 5,
+                  }}
+                  spacing={2}
+                >
+                  <Grid item>
+                    <Typography>Name</Typography>
                   </Grid>
-                
+
+                  <Divider flexItem variant="fullWidth" />
+
+                  <Grid item gutterBottom>
+                    Contents
+                  </Grid>
+
+                  <Grid item>
+                    <Button variant="contained" color="info">
+                      Reply
+                    </Button>
+                  </Grid>
+                </Grid>
+
               </Grid>
             </Grid>
           </Grid>

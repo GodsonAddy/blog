@@ -6,9 +6,8 @@ import {
   ImageBackdrop,
   ImageButton,
   ImageMarked,
-  ImageSrc,
 } from "./FiCardImage";
-import { Stack, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import "./index.css";
 
 const images = [

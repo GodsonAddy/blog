@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 
 function BlogCards2() {
   const dispatch = useDispatch();
-  const { allBlogs, userBlogs } = useSelector((state) => state.blogs);
+  const { allBlogs } = useSelector((state) => state.blogs);
 
   useEffect(() => {
     dispatch(fetchBlogs());
@@ -34,7 +34,7 @@ function BlogCards2() {
   return (
     <>
       {allBlogs.map((blog) => (
-        <Grid item  key={blog.id} style={{ display: "flex" }}>
+        <Grid item key={blog.id} style={{ display: "flex" }}>
           <Card
             variant="outlined"
             sx={{

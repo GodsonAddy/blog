@@ -1,13 +1,11 @@
 import React from "react";
 import {
-  Button,
   Divider,
   Grid,
-  TextField,
   Typography,
   Box,
   IconButton,
-  Link,
+  Button
 } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -17,15 +15,15 @@ export default function LandingFooter() {
   return (
     <Box
       component="footer"
+      color="secondary.main"
+      bgcolor="tertiary.main"
       sx={{
-        color: "white",
-        backgroundColor: "junior.main",
         py: 3,
         px: 2,
         mt: "auto",
       }}
     >
-        
+
       <Grid container spacing={2} direction="row" justifyContent="space-evenly">
         <Grid item xs={4}>
           <Grid
@@ -36,30 +34,19 @@ export default function LandingFooter() {
             spacing={2}
           >
             <Grid item>
-              <Typography variant="h4"> ABOUT US</Typography>
+              <Typography
+                variant="h2"
+                sx={{
+                  mb: 5,
+                }}
+              >
+                vibes
+                <sup>&reg;</sup>
+              </Typography>
             </Grid>
             <Divider flexItem />
 
-            <Grid item>
-              <Grid
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Grid item>
-                  <Typography
-                    variant="h2"
-                    sx={{
-                      mb: 5,
-                    }}
-                  >
-                    vibes
-                    <sup>&reg;</sup>
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
+
 
             <Grid item>
               <Typography variant="subtitle1">
@@ -71,7 +58,7 @@ export default function LandingFooter() {
               <Grid
                 container
                 direction="row"
-                justifyContent="center"
+                justifyContent="flex-start"
                 alignItems="center"
                 spacing={2}
               >
@@ -91,7 +78,7 @@ export default function LandingFooter() {
                 <Grid item>
                   <IconButton
                     sx={{
-                      color: "#fff",
+                      color: "secondary.main",
                       "&:hover": {
                         backgroundColor: "#3b5998",
                       },
@@ -104,7 +91,7 @@ export default function LandingFooter() {
                 <Grid item>
                   <IconButton
                     sx={{
-                      color: "#fff",
+                      color: "secondary.main",
                       "&:hover": {
                         backgroundColor: "#8a3ab9",
                       },
@@ -118,6 +105,87 @@ export default function LandingFooter() {
           </Grid>
         </Grid>
 
+        {/* About Us */}
+        <Grid item>
+          <Grid
+            item
+            container
+            direction="column"
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item xs={4}>
+              <Typography variant="h4">ABOUT US</Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Grid
+                item
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Grid item>
+                  <Button
+                    href="/"
+                    sx={{
+                      color: "secondary.main",
+                      "&:hover": {
+                        color: "primary.main",
+                      }
+                    }}
+                  >
+                    ABOUT
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    href="/"
+                    sx={{
+                      color: "secondary.main",
+                      "&:hover": {
+                        color: "primary.main",
+                      }
+                    }}
+                  >
+                    HOME
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    href="/"
+                    sx={{
+                      color: "secondary.main",
+                      "&:hover": {
+                        color: "primary.main",
+                      }
+                    }}
+                  >
+                    NEWS
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    href="/"
+                    sx={{
+                      color: "secondary.main",
+                      "&:hover": {
+                        color: "primary.main",
+                      }
+                    }}
+                  >
+                    BLOGS
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+
+          </Grid>
+        </Grid>
+
+
+        {/*Popular Blogs */}
         <Grid item>
           <Grid
             item
@@ -132,86 +200,42 @@ export default function LandingFooter() {
             </Grid>
             <Divider flexItem />
             <Grid item>
-              <Typography variant="body1">LOREM IPSUM</Typography>
-              <span>20 JANUARY, 2022</span>
-            </Grid>
-            <Grid item>
-              <Typography variant="body1">LOREM IPSUM</Typography>
-              <span>1 FEBRUARY 2022</span>
-            </Grid>
-            <Grid item>
-              <Typography variant="body1">LOREM IPSUM</Typography>
-              <span>14 FEBRUARY, 2022</span>
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid item xs={4}>
-          <Grid
-            item
-            container
-            direction="column"
-            spacing={2}
-            justifyContent="flex-start"
-            alignItems="center"
-          >
-            <Grid item>
-              <Typography variant="h4">Leave a Comment</Typography>
-            </Grid>
-            <Divider flexItem />
-
-            <Grid item>
-              <TextField
-                id="outlined-basic"
-                placeholder="Name"
-                variant="outlined"
-                fullWidth
-                sx={{
-                  backgroundColor: "secondary.main",
-                  color: "primary.main",
-                }}
-              />
-            </Grid>
-
-            <Grid item>
-              <TextField
-                id="outlined-basic"
-                placeholder="Email"
-                variant="outlined"
-                fullWidth
-                sx={{
-                  backgroundColor: "secondary.main",
-                  color: "primary.main",
-                }}
-              />
-            </Grid>
-
-            <Grid item>
-              <TextField
-                id="outlined-basic"
-                placeholder="Comment"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={4}
-                sx={{
-                  backgroundColor: "secondary.main",
-                  color: "primary.main",
-                }}
-              />
-            </Grid>
-
-            <br />
-
-            <Grid item>
               <Button
-                variant="contained"
-                color="primary"
+                href="#text-buttons"
                 sx={{
-                  marginBottom: "3rem",
+                  color: "secondary.main",
+                  "&:hover": {
+                    color: "primary.main",
+                  }
                 }}
               >
-                COMMENT
+                LOREM IPSUM
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                href="#text-buttons"
+                sx={{
+                  color: "secondary.main",
+                  "&:hover": {
+                    color: "primary.main",
+                  }
+                }}
+              >
+                LOREM IPSUM
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                href="#text-buttons"
+                sx={{
+                  color: "secondary.main",
+                  "&:hover": {
+                    color: "primary.main",
+                  }
+                }}
+              >
+                LOREM IPSUM
               </Button>
             </Grid>
           </Grid>
@@ -237,12 +261,12 @@ export default function LandingFooter() {
 
 
 function Copyright() {
-    return (
-      <Typography variant="body2" color="secondary.main">
-        {'Copyright © CLOCKWORK INC '}
-        
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+  return (
+    <Typography variant="body2" color="secondary.main">
+      {'Copyright © CLOCKWORK INC '}
+
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}

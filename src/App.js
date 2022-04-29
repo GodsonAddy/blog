@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import LogIn from './components/Login';
 import ProtectedRoute from './protectedRoute';
 import SignUp from './components/Signup';
-import { getUser } from './actions/userAction';
-import { store } from './store'
+//import { getUser } from './actions/userAction';
+//import { store } from './store'
 import { CssBaseline } from '@mui/material';
 import LandingPage from './components/LandingPage';
 import ReadFullBlog from './components/DynamicRoute/readblog';
@@ -18,10 +18,10 @@ import { DrawerContextProvider } from './context/drawer.context';
 function App() {
 
 
-  useEffect(() => {
-    store.dispatch(getUser())
-    console.log("user")
-  }, [])
+  // useEffect(() => {
+  //   store.dispatch(getUser())
+  //   console.log("user")
+  // }, [])
 
   return (
     <div className='vibes'>

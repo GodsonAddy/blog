@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import UserDashboard from "..";
 import {
   Typography,
@@ -19,6 +19,10 @@ import LoadingButton from '@mui/lab/LoadingButton';
 function Posted() {
 
   const [loading, setLoading] = useState(false);
+
+  const PostBlog = () => {
+    setLoading(false)
+  }
 
   return (
     <UserDashboard>
@@ -71,6 +75,7 @@ function Posted() {
               loading={loading}
               loadingPosition="end"
               variant="contained"
+              onClick={PostBlog}
             >
               Publish
             </LoadingButton>
