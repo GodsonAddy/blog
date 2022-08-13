@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-const uuid = require("uuid");
 const Users = require("../models/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -50,7 +49,6 @@ router.post("/register", async (req, res) => {
     let lowerLname = last_name.toLowerCase();
 
     const newUser = new Users({
-      id: uuid.v4(),
       email,
       password,
       first_name,
@@ -259,7 +257,6 @@ router.post("/googlelogin", async (req, res) => {
           let Fname = given_name.toLowerCase();
           let Lname = family_name.toLowerCase();
           let newUser = new Users({
-            id: uuid.v4(),
             email,
             password,
             first_name: given_name,
