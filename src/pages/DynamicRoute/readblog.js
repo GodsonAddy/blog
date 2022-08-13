@@ -9,9 +9,10 @@ import {
   ButtonGroup,
   OutlinedInput,
   Divider,
+  CssBaseline,
 } from "@mui/material";
 import React from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { red } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -21,16 +22,14 @@ import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import "./readblog.css";
-import NavigationBar from "../LandingPage/NavigationBar";
-import LandingFooter from "../LandingPage/landingfooter";
+import NavigationBar from "../../components/LandingPage/NavigationBar";
+import LandingFooter from "../../components/LandingPage/landingfooter";
 import ButtonBase from "@mui/material/ButtonBase";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box } from "@mui/system";
 import vibes from "../../images/vibes.png";
-
-
 
 const Img = styled("img")({
   margin: "auto",
@@ -68,8 +67,10 @@ function ReadFullBlog(props) {
   const getId = parseInt(props.match.params.id, 10);
   const data = allBlogs[getId - 1];
 
+  const navigate = useNavigate();
+
   if (getId !== 0 && !getId) {
-    return <Redirect to={{ pathname: "/404" }} />;
+    return navigate("/404");
   }
 
   console.log(data);
@@ -89,7 +90,8 @@ function ReadFullBlog(props) {
   };
 
   return (
-    <>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <CssBaseline />
       <NavigationBar />
       <Container
         sx={{ backgroundColor: "secondary.main", mb: 5, maxHeight: "100%" }}
@@ -219,7 +221,7 @@ function ReadFullBlog(props) {
                 <Grid item sx={{ marginTop: 6 }}>
                   <img
                     src={vibes}
-                    style={{ height: '10rem', width: '51rem' }}
+                    style={{ height: "10rem", width: "51rem" }}
                     alt={data.title}
                   />
                 </Grid>
@@ -234,7 +236,10 @@ function ReadFullBlog(props) {
           </Grid>
         </Grid>
         <Box sx={{ bgcolor: "silver", pb: 5 }}>
-          <Typography variant="h6" color="secondary"> Recommended For You: </Typography>
+          <Typography variant="h6" color="secondary">
+            {" "}
+            Recommended For You:{" "}
+          </Typography>
           <Box sx={{ my: 8 }}>
             <Slider {...settings}>
               <div>
@@ -251,10 +256,7 @@ function ReadFullBlog(props) {
                   <Grid container spacing={2}>
                     <Grid item>
                       <ButtonBase sx={{ width: 128, height: 128 }}>
-                        <Img
-                          alt="complex"
-                          src={vibes}
-                        />
+                        <Img alt="complex" src={vibes} />
                       </ButtonBase>
                     </Grid>
 
@@ -304,10 +306,7 @@ function ReadFullBlog(props) {
                   <Grid container spacing={2}>
                     <Grid item>
                       <ButtonBase sx={{ width: 128, height: 128 }}>
-                        <Img
-                          alt="complex"
-                          src={vibes}
-                        />
+                        <Img alt="complex" src={vibes} />
                       </ButtonBase>
                     </Grid>
 
@@ -357,10 +356,7 @@ function ReadFullBlog(props) {
                   <Grid container spacing={2}>
                     <Grid item>
                       <ButtonBase sx={{ width: 128, height: 128 }}>
-                        <Img
-                          alt="complex"
-                          src={vibes}
-                        />
+                        <Img alt="complex" src={vibes} />
                       </ButtonBase>
                     </Grid>
 
@@ -436,7 +432,6 @@ function ReadFullBlog(props) {
               alignItems="center"
               component={Paper}
               direction="row"
-
               sx={{
                 my: 5,
               }}
@@ -447,7 +442,6 @@ function ReadFullBlog(props) {
               </Grid>
 
               <Grid item>
-
                 <Grid
                   container
                   display="flex"
@@ -475,7 +469,6 @@ function ReadFullBlog(props) {
                     </Button>
                   </Grid>
                 </Grid>
-
               </Grid>
             </Grid>
           </Grid>
@@ -483,8 +476,8 @@ function ReadFullBlog(props) {
       </Container>
 
       <LandingFooter />
-    </>
+    </Box>
   );
 }
 
-export default withRouter(ReadFullBlog);
+export default ReadFullBlog;

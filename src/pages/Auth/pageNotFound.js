@@ -1,11 +1,12 @@
 import React from "react";
-import NavigationBar from "./LandingPage/NavigationBar";
-import LandingFooter from "./LandingPage/landingfooter";
-import { Typography, Container, Grid } from "@mui/material";
+import NavigationBar from "../../components/LandingPage/NavigationBar";
+import LandingFooter from "../../components/LandingPage/landingfooter";
+import { Typography, Container, Grid, Box, CssBaseline } from "@mui/material";
 
 function PageNotFound() {
   return (
-    <>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <CssBaseline />
       <NavigationBar />
 
       <Container>
@@ -29,14 +30,14 @@ function PageNotFound() {
 
           <Grid item>
             <Typography variant="body1">
-              The page you are looking for either has moved or doesn't exists in
-              this server.Try search again!
+              The page you are looking for either has been moved or doesn't
+              exist in the server.Try search again!
             </Typography>
           </Grid>
         </Grid>
       </Container>
       <LandingFooter />
-    </>
+    </Box>
   );
 }
 

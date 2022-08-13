@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -16,61 +16,50 @@ import {
   CssBaseline,
   Avatar,
   ListItemText,
-  ListItemIcon
+  ListItemIcon,
+  Tooltip,
 } from "@mui/material";
-import { makeStyles } from '@mui/styles';
-//import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchIcon from "@mui/icons-material/Search";
-import { logout } from "../../actions/userAction";
+import { logout } from "../../features/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Logout from '@mui/icons-material/Logout';
+import Logout from "@mui/icons-material/Logout";
+import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import { reset } from "../../features/reducer/userReducer";
+import { googleLogout } from "@react-oauth/google";
 
 const pages = ["ABOUT", "NEWS", "BLOGS"];
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-
-  title: {
-    flexGrow: 1,
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    //vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
-
-
-
-export default function NavigationBar({ history, children }, props) {
-  const classes = useStyles();
+export default function NavigationBar() {
   const dispatch = useDispatch();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const { userAuth } = useSelector((state) => state.loginAuth);
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const { authUserInfo } = useSelector((state) => state.auth);
 
+  function stringAvatar(name) {
+    return {
+      sx: {
+        bgcolor: authUserInfo.color,
+      },
+      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+    };
+  }
+
+  function stringSmallAvatar(name) {
+    return {
+      sx: {
+        bgcolor: authUserInfo.color,
+        width: 24,
+        height: 24,
+        fontSize: 14,
+      },
+      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+    };
+  }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -79,52 +68,51 @@ export default function NavigationBar({ history, children }, props) {
     setAnchorElNav(null);
   };
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
-
-
 
   const userAccount = () => {
-    localStorage.setItem("isAuthenticated", "true");
-    window.location.pathname = "/myaccount/dashboard";
+    navigate("/myaccount/dashboard");
   };
 
-  const loginClick = () => {
+  const handleLogOut = () => {
     dispatch(logout());
-    localStorage.clear();
-    window.location.pathname = "/login";
+    googleLogout();
+    dispatch(reset());
+    handleCloseUserMenu();
+    navigate("/");
+  };
+
+  const handleLogin = () => {
+    dispatch(reset());
+    navigate("/login");
   };
 
   return (
     <Box>
       <CssBaseline />
-      <Box sx={{ marginTop: 10, marginBottom: 10 }}>
+      <Container>
         <Grid
           container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          mt={5}
+          mb={10}
         >
-          <Grid item >
-            <Typography
-              variant="h2"
-              sx={{
-                mb: 5,
-              }}
-            >
+          <Grid item mb={5} xs={12}>
+            <Typography variant="h2">
               vibes
               <sup>&reg;</sup>
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <Paper
               component="form"
               sx={{
@@ -132,6 +120,12 @@ export default function NavigationBar({ history, children }, props) {
                 display: "flex",
                 alignItems: "center",
                 width: 500,
+                [theme.breakpoints.down("sm")]: {
+                  width: "32ch",
+                  "&:focus": {
+                    width: "20ch",
+                  },
+                },
               }}
               elevation={3}
             >
@@ -139,11 +133,14 @@ export default function NavigationBar({ history, children }, props) {
                 sx={{
                   ml: 1,
                   flex: 1,
-
+                  padding: (theme) => theme.spacing(1, 1, 1, 0),
+                  //vertical padding + font size from searchIcon
+                  paddingLeft: (theme) => `calc(1em + ${theme.spacing(4)}px)`,
+                  transition: (theme) => theme.transitions.create("width"),
+                  width: "100%",
                 }}
                 placeholder="Search for blogs..."
                 inputProps={{ "aria-label": "search for blogs..." }}
-                className={classes.inputInput}
               />
 
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
@@ -153,12 +150,12 @@ export default function NavigationBar({ history, children }, props) {
             </Paper>
           </Grid>
         </Grid>
-      </Box>
+      </Container>
 
       {/* App Bar */}
 
       <Box>
-        <AppBar position="static" >
+        <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters id="back-to-top-anchor">
               <Button
@@ -244,78 +241,82 @@ export default function NavigationBar({ history, children }, props) {
               </Box>
 
               <div>
-                {userAuth ? (
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    onClick={loginClick}
-                  >
-                    Login/Signup
-                  </Button>
-                ) : (
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit"
-                  >
-                    <AccountCircle color="secondary" />
-                  </IconButton>
+                {/* userAuth */}
+                {!authUserInfo && (
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Button
+                      variant="contained"
+                      onClick={handleLogin}
+                      sx={{
+                        backgroundColor: "secondary.main",
+                        color: "primary.main",
+                        "&:hover": {
+                          color: "secondary.main",
+                        },
+                      }}
+                    >
+                      Login/Signup
+                    </Button>
+                  </Box>
                 )}
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-
-                  keepMounted
-
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-
-                  PaperProps={{
-                    elevation: 0,
-                    sx: {
-                      overflow: 'visible',
-                      filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                      mt: 1.5,
-
-                      '& .MuiAvatar-root': {
-                        width: 32,
-                        height: 32,
-                        ml: -0.5,
-                        mr: 1,
-                      },
-                      '&:before': {
-                        content: '""',
-                        display: 'block',
-                        position: 'absolute',
-                        top: 0,
-                        right: 14,
-                        width: 10,
-                        height: 10,
-                        bgcolor: 'background.paper',
-                        transform: 'translateY(-50%) rotate(45deg)',
-                        zIndex: 0,
-                      },
-                    },
-                  }}
-                  transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                  anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                >
-                  <MenuItem onClick={userAccount}>
-                    <ListItemIcon>
-                      <Avatar />
-                    </ListItemIcon>
-                    <ListItemText>My Dashboard</ListItemText>
-
-                  </MenuItem>
-                  <MenuItem onClick={loginClick}>
-                    <ListItemIcon> <Logout fontSize="small" /></ListItemIcon>
-                    <ListItemText>Logout</ListItemText>
-
-                  </MenuItem>
-                </Menu>
+                {authUserInfo && (
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Tooltip title="My Account">
+                      <IconButton
+                        size="large"
+                        onClick={handleOpenUserMenu}
+                        color="inherit"
+                      >
+                        {authUserInfo?.avatar ? (
+                          <Avatar alt="avatar" src={authUserInfo?.avatar} />
+                        ) : (
+                          <Avatar
+                            alt={authUserInfo.name}
+                            sx={{ width: 24, height: 24 }}
+                            {...stringAvatar(authUserInfo.name)}
+                          />
+                        )}
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                )}
+                <Box sx={{ flexGrow: 0 }}>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    keepMounted
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                    sx={{ mt: "45px" }}
+                    transformOrigin={{ horizontal: "right", vertical: "top" }}
+                    anchorOrigin={{ horizontal: "right", vertical: "top" }}
+                  >
+                    <MenuItem onClick={userAccount}>
+                      <ListItemIcon>
+                        {authUserInfo?.avatar !== "" ? (
+                          <Avatar
+                            alt="avatar"
+                            src={authUserInfo?.avatar}
+                            sx={{ width: 24, height: 24 }}
+                          />
+                        ) : (
+                          <Avatar
+                            alt={authUserInfo.name}
+                            {...stringSmallAvatar(authUserInfo.name)}
+                          />
+                        )}
+                      </ListItemIcon>
+                      <ListItemText>My Dashboard</ListItemText>
+                    </MenuItem>
+                    <MenuItem onClick={handleLogOut}>
+                      <ListItemIcon>
+                        {" "}
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
+                      <ListItemText>Logout</ListItemText>
+                    </MenuItem>
+                  </Menu>
+                </Box>
               </div>
             </Toolbar>
           </Container>

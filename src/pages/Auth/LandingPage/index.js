@@ -1,12 +1,11 @@
 import React from "react";
 import { Box, CssBaseline, useScrollTrigger, Zoom, Fab } from "@mui/material";
-import { withRouter } from "react-router-dom";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PropTypes from "prop-types";
-import LandingFooter from "./landingfooter";
-import NavigationBar from "./NavigationBar";
-import MainPage from "./MainPage";
-import CarouselImage from "./BlogCarousel/carouselImage";
+import LandingFooter from "../../../components/LandingPage/landingfooter";
+import NavigationBar from "../../../components/LandingPage/NavigationBar";
+import MainPage from "../../../components/LandingPage/MainPage";
+import CarouselImage from "../../../components/LandingPage/BlogCarousel/carouselImage";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -48,11 +47,15 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
-const LandingPage = ({ history}, props) => {
- 
-
+const LandingPage = (props) => {
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <CssBaseline />
 
       <NavigationBar />
@@ -70,8 +73,8 @@ const LandingPage = ({ history}, props) => {
 
       {/* Main Body*/}
       <LandingFooter />
-    </>
+    </Box>
   );
 };
 
-export default withRouter(LandingPage);
+export default LandingPage;

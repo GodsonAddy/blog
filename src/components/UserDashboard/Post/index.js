@@ -11,29 +11,19 @@ import {
 import { CustomSelect, StyledOption, Input } from "./util";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import SendIcon from "@mui/icons-material/Send";
-import LoadingButton from '@mui/lab/LoadingButton';
-
-
-
+import LoadingButton from "@mui/lab/LoadingButton";
 
 function Posted() {
-
   const [loading, setLoading] = useState(false);
 
   const PostBlog = () => {
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   return (
     <UserDashboard>
       <Box>
-        <Grid
-          container
-          display="flex"
-          flexDirection="column"
-          spacing={2}
-          xs={8}
-        >
+        <Grid container display="flex" flexDirection="column" spacing={2}>
           <Grid item>
             <Typography variant="h3"> Add New Post</Typography>
           </Grid>

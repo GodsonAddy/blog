@@ -5,7 +5,7 @@ import {
   Typography,
   Box,
   IconButton,
-  Button
+  Button,
 } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -23,16 +23,9 @@ export default function LandingFooter() {
         mt: "auto",
       }}
     >
-
       <Grid container spacing={2} direction="row" justifyContent="space-evenly">
         <Grid item xs={4}>
-          <Grid
-            container
-            direction="column"
-            //justifyContent="center"
-            //alignItems="center"
-            spacing={2}
-          >
+          <Grid container direction="column" spacing={2}>
             <Grid item>
               <Typography
                 variant="h2"
@@ -45,8 +38,6 @@ export default function LandingFooter() {
               </Typography>
             </Grid>
             <Divider flexItem />
-
-
 
             <Grid item>
               <Typography variant="subtitle1">
@@ -124,7 +115,7 @@ export default function LandingFooter() {
                 container
                 direction="row"
                 justifyContent="space-between"
-                alignItems="center"
+                alignItems="flex-start"
               >
                 <Grid item>
                   <Button
@@ -133,7 +124,7 @@ export default function LandingFooter() {
                       color: "secondary.main",
                       "&:hover": {
                         color: "primary.main",
-                      }
+                      },
                     }}
                   >
                     ABOUT
@@ -146,7 +137,7 @@ export default function LandingFooter() {
                       color: "secondary.main",
                       "&:hover": {
                         color: "primary.main",
-                      }
+                      },
                     }}
                   >
                     HOME
@@ -159,7 +150,7 @@ export default function LandingFooter() {
                       color: "secondary.main",
                       "&:hover": {
                         color: "primary.main",
-                      }
+                      },
                     }}
                   >
                     NEWS
@@ -172,18 +163,29 @@ export default function LandingFooter() {
                       color: "secondary.main",
                       "&:hover": {
                         color: "primary.main",
-                      }
+                      },
                     }}
                   >
                     BLOGS
                   </Button>
                 </Grid>
+                <Grid item>
+                  <Button
+                    href="/"
+                    sx={{
+                      color: "secondary.main",
+                      "&:hover": {
+                        color: "primary.main",
+                      },
+                    }}
+                  >
+                    TERMS & CONDITIONS
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
-
           </Grid>
         </Grid>
-
 
         {/*Popular Blogs */}
         <Grid item>
@@ -206,7 +208,7 @@ export default function LandingFooter() {
                   color: "secondary.main",
                   "&:hover": {
                     color: "primary.main",
-                  }
+                  },
                 }}
               >
                 LOREM IPSUM
@@ -219,7 +221,7 @@ export default function LandingFooter() {
                   color: "secondary.main",
                   "&:hover": {
                     color: "primary.main",
-                  }
+                  },
                 }}
               >
                 LOREM IPSUM
@@ -232,7 +234,7 @@ export default function LandingFooter() {
                   color: "secondary.main",
                   "&:hover": {
                     color: "primary.main",
-                  }
+                  },
                 }}
               >
                 LOREM IPSUM
@@ -259,14 +261,13 @@ export default function LandingFooter() {
   );
 }
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="secondary.main">
-      {'Copyright © CLOCKWORK INC '}
+      {"Copyright © CLOCKWORK INC "}
 
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }

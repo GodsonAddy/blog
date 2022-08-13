@@ -1,39 +1,36 @@
-import React, { useEffect } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import {
-  Avatar,
-  Grid,
-  CardActionArea,
-  CardActions,
-  CardHeader,
-  Chip,
-  Stack,
-} from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogs } from "../../../actions/blogAction";
-import { red } from "@mui/material/colors";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Link } from "react-router-dom";
+// import React, { useEffect } from "react";
+// import Card from "@mui/material/Card";
+// import CardContent from "@mui/material/CardContent";
+// import CardMedia from "@mui/material/CardMedia";
+// import Typography from "@mui/material/Typography";
+// import {
+//   Avatar,
+//   Grid,
+//   CardActionArea,
+//   CardActions,
+//   CardHeader,
+//   Chip,
+//   Stack,
+// } from "@mui/material";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchBlogs } from "../../../features/actions/blogAction";
+// import { red } from "@mui/material/colors";
+// import VisibilityIcon from "@mui/icons-material/Visibility";
+// import { Link } from "react-router-dom";
 
 function BlogCards2() {
-  const dispatch = useDispatch();
-  const { allBlogs } = useSelector((state) => state.blogs);
-
-  useEffect(() => {
-    dispatch(fetchBlogs());
-    //allBlogs.unshift(userBlogs);
-  }, []);
-
+  //   const dispatch = useDispatch();
+  //const { allBlogs } = useSelector((state) => state.blogs);
+  //   useEffect(() => {
+  //     dispatch(fetchBlogs());
+  //allBlogs.unshift(userBlogs);
+  //   }, [dispatch]);
   //const reduceWords = (str) => {
   //return str.length > 300 ? str.substring(0, 220) + "..." : str;
   //};
-
-  return (
-    <>
-      {allBlogs.map((blog) => (
+  // return (
+  //   <>
+  /* {allBlogs.map((blog) => (
         <Grid item key={blog.id} style={{ display: "flex" }}>
           <Card
             variant="outlined"
@@ -90,9 +87,9 @@ function BlogCards2() {
             </CardActionArea>
           </Card>
         </Grid>
-      ))}
-    </>
-  );
+      ))} */
 }
+//     </>
+//   );
 
 export default BlogCards2;
