@@ -13,7 +13,7 @@ app.use(cors());
 app.use(CookieParser());
 mongoose.promise = global.Promise;
 
-const userRoute = require("../client/config/signup");
+const userRoute = require("./config/signup");
 
 mongoose
   .connect(process.env.MONGO_URL, {

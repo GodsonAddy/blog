@@ -1,5 +1,5 @@
-const ResetToken = require("../../server/models/token");
-const Users = require("../../server/models/users");
+const ResetToken = require("../models/token");
+const Users = require("../models/users");
 const { isValidObjectId } = require("mongoose");
 
 // Reset Password Middleware
