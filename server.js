@@ -30,10 +30,17 @@ mongoose.set("debug", true);
 
 app.use("/api/auth/users", userRoute);
 
-app.use(express.static(path.join(__dirname, "public")));
+//app.use(express.static(path.join(__dirname, "public")));
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
 const port = 5000;
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log("Server is listening to port", port);
 });
