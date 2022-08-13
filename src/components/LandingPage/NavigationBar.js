@@ -166,7 +166,7 @@ export default function NavigationBar() {
                   fontWeight: 700,
                 }}
                 color="secondary"
-                href="/"
+                onClick={() => navigate("/")}
               >
                 HOME
               </Button>
@@ -219,7 +219,9 @@ export default function NavigationBar() {
                   fontWeight: 700,
                 }}
                 color="secondary"
-                href="/"
+                onClick={() => {
+                  navigate("/");
+                }}
               >
                 HOME
               </Button>

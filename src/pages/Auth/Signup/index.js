@@ -138,11 +138,16 @@ function SignUp() {
     }
   };
 
+  const handleLogin = () => {
+    dispatch(reset());
+    navigate("/login");
+  };
+
   return (
     <Container component="main">
       <CssBaseline />
 
-      <Link href="/" underline="none">
+      <Link onClick={() => navigate("/")} underline="none">
         <Typography
           sx={{ color: "tertiary.main", fontSize: 50 }}
           component="h1"
@@ -283,7 +288,7 @@ function SignUp() {
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Button
-                    href="/login"
+                    onClick={handleLogin}
                     variant="text"
                     sx={{ color: "#E60000", fontSize: 15, mb: 2 }}
                   >

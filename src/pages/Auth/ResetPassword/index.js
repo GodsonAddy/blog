@@ -136,7 +136,7 @@ function ResetPasswordChange() {
   return (
     <Container component="main">
       <CssBaseline />
-      <Link href="/" underline="none">
+      <Link onClick={() => navigate("/")} underline="none">
         <Typography
           sx={{ color: "tertiary.main", fontSize: 50 }}
           component="h1"

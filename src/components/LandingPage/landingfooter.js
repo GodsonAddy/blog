@@ -10,8 +10,10 @@ import {
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingFooter() {
+  const navigate = useNavigate();
   return (
     <Box
       component="footer"
@@ -119,7 +121,7 @@ export default function LandingFooter() {
               >
                 <Grid item>
                   <Button
-                    href="/"
+                    onClick={() => navigate("/")}
                     sx={{
                       color: "secondary.main",
                       "&:hover": {
@@ -132,7 +134,7 @@ export default function LandingFooter() {
                 </Grid>
                 <Grid item xs={4}>
                   <Button
-                    href="/"
+                    onClick={() => navigate("/")}
                     sx={{
                       color: "secondary.main",
                       "&:hover": {
@@ -145,7 +147,7 @@ export default function LandingFooter() {
                 </Grid>
                 <Grid item xs={4}>
                   <Button
-                    href="/"
+                    onClick={() => navigate("/")}
                     sx={{
                       color: "secondary.main",
                       "&:hover": {
@@ -158,7 +160,7 @@ export default function LandingFooter() {
                 </Grid>
                 <Grid item xs={4}>
                   <Button
-                    href="/"
+                    onClick={() => navigate("/")}
                     sx={{
                       color: "secondary.main",
                       "&:hover": {
@@ -171,7 +173,7 @@ export default function LandingFooter() {
                 </Grid>
                 <Grid item>
                   <Button
-                    href="/"
+                    onClick={() => navigate("/")}
                     sx={{
                       color: "secondary.main",
                       "&:hover": {

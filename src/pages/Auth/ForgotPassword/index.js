@@ -14,12 +14,14 @@ import { ForgotPassword } from "../../../features/actions/userAction";
 import { toast } from "react-toastify";
 import { reset } from "../../../features/reducer/userReducer";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPasswordChange() {
   const [email, setEmail] = useState("");
   const [forgotError, setForgotError] = useState({});
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { authMessage, authError, loading } = useSelector(
     (state) => state.auth
@@ -78,7 +80,7 @@ function ForgotPasswordChange() {
   return (
     <Container component="main">
       <CssBaseline />
-      <Link href="/" underline="none">
+      <Link onClick={() => navigate("/")} underline="none">
         <Typography
           sx={{ color: "tertiary.main", fontSize: 50 }}
           component="h1"
@@ -159,7 +161,7 @@ function ForgotPasswordChange() {
               <Grid container justifyContent="center">
                 <Grid item>
                   <Button
-                    href="/login"
+                    onClick={() => navigate("/login")}
                     variant="text"
                     sx={{ color: "#E60000", fontSize: 15, mb: 2 }}
                   >

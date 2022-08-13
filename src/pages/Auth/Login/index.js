@@ -135,9 +135,19 @@ const LogIn = () => {
     }
   };
 
+  const handleForgot = () => {
+    dispatch(reset());
+    navigate("/forgotpassword");
+  };
+
+  const handleSignUp = () => {
+    dispatch(reset());
+    navigate("/signup");
+  };
+
   return (
     <Container component="main">
-      <Link href="/" underline="none">
+      <Link onClick={() => navigate("/")} underline="none">
         <Typography
           sx={{ color: "tertiary.main", fontSize: 50 }}
           component="h1"
@@ -245,7 +255,7 @@ const LogIn = () => {
               <Grid container mb={3}>
                 <Grid item xs>
                   <Button
-                    href="/forgotpassword"
+                    onClick={handleForgot}
                     variant="text"
                     sx={{ color: "#E60000", fontSize: 15 }}
                   >
@@ -255,7 +265,7 @@ const LogIn = () => {
 
                 <Grid item>
                   <Button
-                    href="/signup"
+                    onClick={handleSignUp}
                     variant="text"
                     sx={{ fontSize: 15, color: "#E60000" }}
                   >

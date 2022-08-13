@@ -6,9 +6,11 @@ import React from "react";
 import { Button, Grid } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import "../index.css";
+import { useNavigate } from "react-router-dom";
 // import { DeleteDialog } from "./util";
 
 function BlogTable() {
+  const navigate = useNavigate();
   // const [open, setOpen] = useState(false);
 
   //const { allBlogs } = useSelector((state) => state.blogs);
@@ -99,7 +101,7 @@ function BlogTable() {
             variant="outlined"
             startIcon={<AddIcon />}
             color="primary"
-            href="/myaccount/posts"
+            onClick={() => navigate("/myaccount/posts")}
           >
             Add a blog
           </Button>
