@@ -119,8 +119,6 @@ function SignUp() {
       authGooglelogin({ token: response.credential })
     );
 
-    console.log(resultAction);
-
     if (authGooglelogin.fulfilled.match(resultAction)) {
       const user = resultAction.payload;
       console.log("user", user);
@@ -311,13 +309,20 @@ function SignUp() {
           OR
         </Divider>
 
-        <Grid item xs={4}>
+        <Grid
+          item
+          sx={{
+            xs: useMediaQuery(theme.breakpoints.down(300))
+              ? "vertical"
+              : "horizontal",
+          }}
+        >
           <GoogleLogin
             onSuccess={googleLogin}
             onError={googleLogin}
             size="large"
             text="signup_with"
-            width="500px"
+            width="300px"
             shape="rectangular"
             logo_alignment="center"
             theme="filled_black"

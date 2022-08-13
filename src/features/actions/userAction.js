@@ -13,7 +13,6 @@ export const GetUser = createAsyncThunk(
   async (arg, { getState, rejectWithValue }) => {
     try {
       const { auth } = getState();
-      console.log("token", auth.jwtToken);
 
       const config = {
         headers: {
@@ -21,7 +20,7 @@ export const GetUser = createAsyncThunk(
         },
       };
       const { data } = await axios.get(getUserURL, config);
-      console.log("data", data);
+
       return data;
     } catch (error) {
       const message =

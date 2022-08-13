@@ -149,23 +149,21 @@ export default function MenuBar() {
       open={isMobileMenuOpen}
       onClose={handleCloseUserMenu}
     >
-      <MenuItem>
-        <IconButton size="large" onClick={() => navigate("/")}>
+      <MenuItem onClick={() => navigate("/")}>
+        <IconButton size="large">
           <HomeRoundedIcon />
         </IconButton>
 
         <p>Home</p>
       </MenuItem>
-      <MenuItem>
+      <MenuItem onClick={() => navigate("/myaccount/notifications")}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
         >
           <Badge badgeContent={17} color="error">
-            <NotificationsNoneOutlinedIcon
-              onClick={() => navigate("/myaccount/notifications")}
-            />
+            <NotificationsNoneOutlinedIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -249,11 +247,10 @@ export default function MenuBar() {
                 size="large"
                 aria-label="show 17 new notifications"
                 color="inherit"
+                onClick={() => navigate("/myaccount/notifications")}
               >
                 <Badge badgeContent={17} color="error">
-                  <NotificationsNoneOutlinedIcon
-                    onClick={() => navigate("/myaccount/notifications")}
-                  />
+                  <NotificationsNoneOutlinedIcon />
                 </Badge>
               </IconButton>
             </Box>
