@@ -1,86 +1,38 @@
 {
   "name": "blog",
   "proxy": "http://localhost:5000/",
-  "version": "0.1.0",
-  "private": true,
-  "keywords": [
-    "react-oauth/google",
-    "google-auth-library",
-    "nodemailer",
-    "blog",
-    "login",
-    "signup",
-    "mern"
-  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "clients-install": "npm install --prefix clients",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "clients": "npm start --prefix clients",
+    "dev": "concurrently \"npm run server\" \"npm run clients\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix clients && npm run build --prefix clients"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GodsonAddy/blog.git"
+  },
+  "author": "GodsonAddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GodsonAddy/blog/issues"
+  },
+  "homepage": "https://github.com/GodsonAddy/blog#readme",
   "dependencies": {
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/lab": "^5.0.0-alpha.90",
-    "@mui/material": "^5.9.1",
-    "@mui/x-data-grid": "^5.13.1",
-    "@react-oauth/google": "^0.2.6",
-    "@reduxjs/toolkit": "^1.8.3",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
-    "caniuse-lite": "^1.0.30001367",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "cra-template": "^1.2.0",
-    "date-fns": "^2.28.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
     "google-auth-library": "^8.1.1",
-    "jsonwebtoken": "^8.5.1",
-    "jwt-decode": "^3.1.2",
-    "mongodb": "^4.8.0",
-    "mongoose": "^6.4.5",
-    "nodemailer": "^6.7.7",
-    "nodemon": "^2.0.19",
-    "query-string": "^7.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-material-ui-carousel": "^3.4.2",
-    "react-redux": "^8.0.2",
-    "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
-    "react-slick": "^0.29.0",
-    "react-swipeable-views": "^0.14.0",
-    "react-toastify": "^9.0.6",
-    "recharts": "^2.1.12",
-    "redux": "^4.2.0",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0",
-    "slick-carousel": "^1.8.1",
-    "validator": "^13.7.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "nodemon server.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "description": "blog post",
-  "main": "server.js",
-  "author": "Godson Addy <godsonaddy@yahoo.co.uk>",
-  "license": "MIT"
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.2",
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19"
+  }
 }
