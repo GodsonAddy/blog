@@ -104,7 +104,7 @@ const LogIn = () => {
       setTimeout(toaster, 2000);
     } else {
       if (resultAction.payload) {
-        toast.error(`Login failed: ${resultAction.payload}`);
+        //toast.error(`Login failed: ${resultAction.payload}`);
       } else {
         toast.error(`Login failed`);
       }
@@ -126,7 +126,7 @@ const LogIn = () => {
       setTimeout(toaster, 2000);
     } else {
       if (resultAction.payload) {
-        toast.error(`Login failed: ${resultAction.payload}`);
+        //toast.error(`Login failed: ${resultAction.payload}`);
       } else {
         toast.error(`Login failed`);
       }
@@ -145,7 +145,7 @@ const LogIn = () => {
 
   return (
     <Container component="main">
-      <Link onClick={() => navigate("/")} underline="none">
+      <Link href="/" underline="none">
         <Typography
           sx={{ color: "tertiary.main", fontSize: 50 }}
           component="h1"

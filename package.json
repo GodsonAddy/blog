@@ -6,7 +6,7 @@
   "scripts": {
     "clients-install": "npm install --prefix clients",
     "start": "node server.js",
-    "server": "nodemon server.js --exec babel-node --presets babel-preset-env",
+    "server": "nodemon server.js",
     "clients": "npm start --prefix clients",
     "dev": "concurrently \"npm run server\" \"npm run clients\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix clients && npm run build --prefix clients"

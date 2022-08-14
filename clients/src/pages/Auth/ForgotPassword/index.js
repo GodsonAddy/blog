@@ -71,7 +71,7 @@ function ForgotPasswordChange() {
       setEmail("");
     } else {
       if (resultAction.payload) {
-        toast.error(`Login failed: ${resultAction.payload}`);
+        //toast.error(`Login failed: ${resultAction.payload}`);
       } else {
         toast.error(`Login failed, ${resultAction.error.message}`);
       }
@@ -80,7 +80,7 @@ function ForgotPasswordChange() {
   return (
     <Container component="main">
       <CssBaseline />
-      <Link onClick={() => navigate("/")} underline="none">
+      <Link href="/" underline="none">
         <Typography
           sx={{ color: "tertiary.main", fontSize: 50 }}
           component="h1"
