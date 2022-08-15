@@ -1,12 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const registerURL = "http://localhost:5000/api/auth/users/register";
-const loginURL = "http://localhost:5000/api/auth/users/login";
-const googleURL = "http://localhost:5000/api/auth/users/googlelogin";
-const forgotpasswordURL = "http://localhost:5000/api/auth/users/forgotpassword";
-const getUserURL = "http://localhost:5000/api/auth/users/credential";
-
 export const GetUser = createAsyncThunk(
   "auth/getuser",
 
@@ -19,7 +13,7 @@ export const GetUser = createAsyncThunk(
           Authorization: `${auth.jwtToken}`,
         },
       };
-      const { data } = await axios.get(getUserURL, config);
+      const { data } = await axios.get("/api/auth/users/credential", config);
 
       return data;
     } catch (error) {
@@ -34,7 +28,7 @@ export const GetUser = createAsyncThunk(
 );
 
 const forgotpassword = async (userData) => {
-  const res = await axios.post(forgotpasswordURL, userData);
+  const res = await axios.post("/api/auth/users/forgotpassword", userData);
 
   if (res.data) {
     localStorage.setItem("token", JSON.stringify(res.data));
@@ -46,7 +40,7 @@ const forgotpassword = async (userData) => {
 const verifyresetpassword = async (params) => {
   const { id, token } = params;
   const res = await axios.get(
-    `http://localhost:5000/api/auth/users/reset-password?id=${id}&token=${token}`
+    `/api/auth/users/reset-password?id=${id}&token=${token}`
   );
 
   if (res.data) {
@@ -60,7 +54,7 @@ const resetpassword = async (userData) => {
   let id = userData.id;
   let token = userData.token;
   let password = userData.password;
-  const URL = `http://localhost:5000/api/auth/users/reset-password?id=${id}&token=${token}`;
+  const URL = `/api/auth/users/reset-password?id=${id}&token=${token}`;
   const res = await axios.post(URL, { password });
   console.log("data", res.data);
   if (res.data) {
@@ -79,7 +73,11 @@ export const authRegister = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      const { data } = await axios.post(registerURL, user, config);
+      const { data } = await axios.post(
+        "/api/auth/users/register",
+        user,
+        config
+      );
       localStorage.setItem("token", data.jwtToken);
       return data;
     } catch (error) {
@@ -102,7 +100,7 @@ export const authLogin = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      const { data } = await axios.post(loginURL, user, config);
+      const { data } = await axios.post("/api/auth/users/login", user, config);
 
       localStorage.setItem("token", data.jwtToken);
       return data;
@@ -126,7 +124,11 @@ export const authGooglelogin = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      const { data } = await axios.post(googleURL, user, config);
+      const { data } = await axios.post(
+        "/api/auth/users/googlelogin",
+        user,
+        config
+      );
 
       localStorage.setItem("token", data.jwtToken);
       return data;
