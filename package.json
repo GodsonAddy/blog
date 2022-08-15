@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "A blog page",
   "main": "server.js",
   "scripts": {
     "clients-install": "npm install --prefix clients",

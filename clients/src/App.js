@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
+// Use HashRouter when you deploy to Heroku/Netlify
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Navigate,
   Route,
   Routes,
