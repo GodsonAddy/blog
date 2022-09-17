@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 // Use HashRouter when you deploy to Heroku/Netlify
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Navigate,
   Route,
   Routes,
@@ -10,8 +10,7 @@ import {
 import LogIn from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/Signup";
 import { CssBaseline } from "@mui/material";
-import LandingPage from "./pages/Auth/LandingPage";
-import ReadFullBlog from "./pages/DynamicRoute/readblog";
+import ReadFullBlog from "./pages/DynamicRoute/ReadFullBlog";
 import PageNotFound from "./pages/Auth/pageNotFound";
 import Dashboard from "./components/UserDashboard/Dashboard";
 import Posted from "./components/UserDashboard/Post";
@@ -30,6 +29,13 @@ import { GetUser, logout } from "../src/features/actions/userAction";
 import RequireAuth from "./AuthRoute/RequireAuth";
 import PublicRoute from "./AuthRoute/PublicRoute";
 import { reset } from "./features/reducer/userReducer";
+import BlogCategory from "./pages/DynamicRoute/BlogCategory";
+import MainPage from "./components/LandingPage/MainPage";
+import UserProfile from "./pages/ViewUserProfile";
+import About from "./pages/About";
+import News from "./pages/News";
+import AllBlogs from "./pages/Blogs";
+import ShowMoreUsers from "./pages/ShowMoreUsers";
 
 function App() {
   const { jwtToken, authError } = useSelector((state) => state.auth);
@@ -53,7 +59,12 @@ function App() {
         <CssBaseline />
         <DrawerContextProvider>
           <Routes>
-            <Route exact path="/" element={<LandingPage />} />
+            <Route exact path="/" element={<MainPage />} />
+            <Route exact path="/user" element={<ShowMoreUsers />} />
+            <Route exact path="/blog" element={<AllBlogs />} />
+            <Route exact path="/news" element={<News />} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/user/:id/:moniker" element={<UserProfile />} />
 
             <Route element={<PublicRoute />}>
               <Route exact path="/login" element={<LogIn />} />
@@ -70,10 +81,11 @@ function App() {
               path="/reset-password"
               element={<ResetPasswordChange />}
             />
+            <Route exact path="/blog/:category" element={<BlogCategory />} />
             <Route
               exact
-              path="/blog/:id/:title"
-              render={(props) => <ReadFullBlog {...props} />}
+              path="/blog/:category/:id/:slug"
+              element={<ReadFullBlog />}
             />
 
             <Route element={<RequireAuth />}>

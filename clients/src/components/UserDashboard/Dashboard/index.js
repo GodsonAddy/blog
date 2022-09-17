@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserDashboard from "..";
 import { Grid, Paper, Box, Typography } from "@mui/material";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -10,8 +10,18 @@ import RecentComment from "./RecentComment";
 import Chart from "./Chart";
 import BlogTable from "../Dashboard/BlogTable";
 import SocialMedia from "./SocialMedia";
+import { useDispatch } from "react-redux";
+import { getMyBlogs } from "../../../features/actions/blogAction";
+import { resetBlog } from "../../../features/reducer/blogReducer";
 
 function Dashboard() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMyBlogs());
+
+    dispatch(resetBlog());
+  }, [dispatch]);
   return (
     <UserDashboard>
       <Box
@@ -25,15 +35,25 @@ function Dashboard() {
           direction="row"
           display="flex"
           marginTop={3}
-          
         >
           <Grid item xs={12} sx={{ flex: 2 }} sm={8}>
             <Grid container spacing={2} direction="column" display="flex">
-              <Grid item >
-                <Grid container spacing={2} direction="row" display="flex" marginBottom={2} justifyContent='space-evenly'>
+              <Grid item>
+                <Grid
+                  container
+                  spacing={2}
+                  direction="row"
+                  display="flex"
+                  marginBottom={2}
+                  justifyContent="space-evenly"
+                >
                   {/* Followers*/}
                   <Grid item>
-                    <Paper elevation={2} variant="elevation" sx={{width: 160}}>
+                    <Paper
+                      elevation={2}
+                      variant="elevation"
+                      sx={{ width: 160 }}
+                    >
                       <Grid
                         container
                         spacing={2}
@@ -69,7 +89,11 @@ function Dashboard() {
 
                   {/* Posts */}
                   <Grid item>
-                    <Paper elevation={2} variant="elevation" sx={{width: 160}}>
+                    <Paper
+                      elevation={2}
+                      variant="elevation"
+                      sx={{ width: 160 }}
+                    >
                       <Grid
                         container
                         spacing={2}
@@ -104,7 +128,11 @@ function Dashboard() {
 
                   {/* Likes */}
                   <Grid item>
-                    <Paper elevation={2} variant="elevation" sx={{width: 160}}>
+                    <Paper
+                      elevation={2}
+                      variant="elevation"
+                      sx={{ width: 160 }}
+                    >
                       <Grid
                         container
                         spacing={2}
@@ -139,7 +167,11 @@ function Dashboard() {
 
                   {/* Viewers */}
                   <Grid item>
-                    <Paper elevation={2} variant="elevation" sx={{width: 160}}>
+                    <Paper
+                      elevation={2}
+                      variant="elevation"
+                      sx={{ width: 160 }}
+                    >
                       <Grid
                         container
                         spacing={2}
@@ -172,14 +204,14 @@ function Dashboard() {
                     </Paper>
                   </Grid>
                 </Grid>
-                    
-                    {/* Charts */}
-                <Grid item > 
+
+                {/* Charts */}
+                <Grid item>
                   <Chart />
                 </Grid>
 
-                 {/* Table */}
-                 <Grid item my={4} >
+                {/* Table */}
+                <Grid item my={4}>
                   <BlogTable />
                 </Grid>
               </Grid>
@@ -187,7 +219,7 @@ function Dashboard() {
           </Grid>
 
           {/* Recent Comments */}
-          <Grid item xs={12} sm={4} style={{ display: "flex", flex: 1 }} >
+          <Grid item xs={12} sm={4} style={{ display: "flex", flex: 1 }}>
             <Grid container spacing={2} direction="column">
               <Grid item>
                 <RecentComment />
@@ -199,8 +231,6 @@ function Dashboard() {
               </Grid>
             </Grid>
           </Grid>
-
-          
         </Grid>
       </Box>
     </UserDashboard>

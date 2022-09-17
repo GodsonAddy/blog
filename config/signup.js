@@ -362,4 +362,116 @@ router.delete("/api/auth/users:id", auth, (req, res) => {
   }
 });
 
+// get 3 users
+router.get("/limit/3", async (req, res) => {
+  try {
+    const user = await Users.find().limit(3);
+    if (!user) {
+      res.status(400).json({ msg: "No user yet" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ msg: "Internal Server Error", error });
+  }
+});
+
+// get all users
+router.get("/", async (req, res) => {
+  const { page } = req.query;
+  try {
+    const limit = 20;
+    const startIndex = (Number(page) - 1) * limit;
+    const total = await Users.countDocuments({});
+    const user = await Users.find()
+      .sort({ _id: -1 })
+      .limit(limit)
+      .skip(startIndex);
+    await Users.populate(user, { path: "blogposts", model: "blogs" });
+    if (!user) {
+      res.status(400).json({ msg: "No user yet" });
+    }
+    res.status(200).json({
+      allusers: user,
+      currentPage: Number(page),
+      numberOfPages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    res.status(500).json({ msg: "Internal Server Error", error });
+  }
+});
+
+// search users
+router.get("/search", async (req, res) => {
+  const { q } = req.query;
+  try {
+    const search = new RegExp(q, "i");
+    const user = await Users.find({ $or: [{ search }] }).populate({
+      path: "blogposts",
+      model: "blogs",
+    });
+    if (!user) {
+      res.status(400).json({ msg: "No user yet" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ msg: "Internal Server Error", error });
+  }
+});
+
+// Get user profile by id
+router.get("/:id/:moniker", async (req, res) => {
+  const { moniker, id } = req.params;
+  const { page } = req.query;
+
+  try {
+    if (!moniker || !id) {
+      return res.status(400).json({ msg: "Invalid moniker or id" });
+    }
+
+    const limit = 20;
+    const startIndex = (Number(page) - 1) * limit;
+    const total = await Users.countDocuments({});
+    const userid = await Users.findById(id)
+      .sort({ _id: -1 })
+      .limit(limit)
+      .skip(startIndex)
+      .populate({
+        path: "blogposts",
+        model: "blogs",
+      });
+
+    if (!userid) {
+      return res.status(400).json({ msg: `User ${id} does not exist` });
+    }
+
+    res.status(200).json({
+      allusers: userid,
+      currentPage: Number(page),
+      numberOfPages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    res.status(500).json({ msg: "Internal server error", error });
+  }
+});
+
+//Follow user
+router.patch("/followuser/:id", auth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (!id) {
+      return res.status(400).json({ msg: "Invalid id" });
+    }
+
+    const followuser = await Users.findById(id);
+    const updateUser = await Users.findByIdAndUpdate(
+      id,
+      { followers: followuser.followers + 1 },
+      { new: true }
+    );
+    res.status(200).json(updateUser);
+  } catch (error) {
+    return res.status(500).json({ msg: "Internal server error", error });
+  }
+});
+
 module.exports = router;

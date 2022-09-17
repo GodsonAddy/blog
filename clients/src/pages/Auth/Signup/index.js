@@ -24,6 +24,7 @@ import { useTheme } from "@mui/material/styles";
 import { reset } from "../../../features/reducer/userReducer";
 import { toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
+import "../../../App.css";
 
 const initialFormValues = {
   email: "",
@@ -145,22 +146,33 @@ function SignUp() {
     <Container component="main">
       <CssBaseline />
 
-      <Link href="/" underline="none">
-        <Typography
-          sx={{ color: "tertiary.main", fontSize: 50 }}
-          component="h1"
-          variant="h4"
-        >
-          vibes<sup>&reg;</sup>
-        </Typography>
-      </Link>
+      <Grid container display="flex">
+        <Grid item sm={3}>
+          <Link href="/" underline="none">
+            <Typography
+              variant="h4"
+              sx={{
+                letterSpacing: 5,
+                backgroundColor: "tertiary.main",
+                color: "secondary.main",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              id="logo"
+            >
+              <sup style={{ fontSize: "14px" }}>THE</sup>BLOGMENTARY
+            </Typography>
+          </Link>
+        </Grid>
+      </Grid>
 
       <Grid
         container
         display="flex"
         alignItems="center"
         justifyContent="center"
-        mb={5}
+        my={5}
       >
         <Grid item>
           <Typography component="h1" variant="h4">

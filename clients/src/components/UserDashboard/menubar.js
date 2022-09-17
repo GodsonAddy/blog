@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { reset } from "../../features/reducer/userReducer.js";
 import { logout } from "../../features/actions/userAction.js";
 import { googleLogout } from "@react-oauth/google";
+import "../../App.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -102,9 +103,9 @@ export default function MenuBar() {
   function stringAvatar(name) {
     return {
       sx: {
-        bgcolor: authUserInfo.color,
+        bgcolor: authUserInfo?.color,
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: `${name?.split(" ")[0][0]}${name?.split(" ")[1][0]}`,
     };
   }
 
@@ -177,11 +178,11 @@ export default function MenuBar() {
           color="inherit"
         >
           {authUserInfo?.avatar ? (
-            <Avatar alt={authUserInfo.name} src={authUserInfo?.avatar} />
+            <Avatar alt={authUserInfo?.name} src={authUserInfo?.avatar} />
           ) : (
             <Avatar
-              alt={authUserInfo.name}
-              {...stringAvatar(authUserInfo.name)}
+              alt={authUserInfo?.name}
+              {...stringAvatar(authUserInfo?.name)}
             />
           )}
         </IconButton>
@@ -209,13 +210,18 @@ export default function MenuBar() {
 
           <Typography
             variant="h4"
+            sx={{
+              letterSpacing: 5,
+              backgroundColor: "tertiary.main",
+              color: "secondary.main",
+              display: { xs: "none", sm: "block" },
+            }}
+            id="logo"
             noWrap
-            sx={{ display: { xs: "none", sm: "block" } }}
-            fontWeight="bolder"
           >
-            vibes
-            <sup>&reg;</sup>
+            <sup style={{ fontSize: "14px" }}>THE</sup>BLOGMENTARY
           </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
 
           <Search>
@@ -271,14 +277,14 @@ export default function MenuBar() {
                 component="div"
                 sx={{ display: { xs: "none", sm: "block" }, mr: 2 }}
               >
-                {`Hello ${authUserInfo.name}`}
+                {`Hello ${authUserInfo?.name}`}
               </Typography>
               {authUserInfo?.avatar ? (
-                <Avatar alt={authUserInfo.name} src={authUserInfo?.avatar} />
+                <Avatar alt={authUserInfo?.name} src={authUserInfo?.avatar} />
               ) : (
                 <Avatar
-                  alt={authUserInfo.name}
-                  {...stringAvatar(authUserInfo.name)}
+                  alt={authUserInfo?.name}
+                  {...stringAvatar(authUserInfo?.name)}
                 />
               )}
 

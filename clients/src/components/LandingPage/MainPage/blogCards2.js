@@ -1,95 +1,152 @@
-// import React, { useEffect } from "react";
-// import Card from "@mui/material/Card";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Typography from "@mui/material/Typography";
-// import {
-//   Avatar,
-//   Grid,
-//   CardActionArea,
-//   CardActions,
-//   CardHeader,
-//   Chip,
-//   Stack,
-// } from "@mui/material";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchBlogs } from "../../../features/actions/blogAction";
-// import { red } from "@mui/material/colors";
-// import VisibilityIcon from "@mui/icons-material/Visibility";
-// import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  Avatar,
+  Grid,
+  CardActionArea,
+  CardActions,
+  CardHeader,
+  Card,
+  Typography,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Link } from "react-router-dom";
+import { GetAtLeast6Blogs } from "../../../features/actions/blogAction";
+import { resetBlog } from "../../../features/reducer/blogReducer";
+import { format } from "date-fns";
+import Favorite from "@mui/icons-material/Favorite";
+import ModeCommentIcon from "@mui/icons-material/ModeComment";
 
 function BlogCards2() {
-  //   const dispatch = useDispatch();
-  //const { allBlogs } = useSelector((state) => state.blogs);
-  //   useEffect(() => {
-  //     dispatch(fetchBlogs());
-  //allBlogs.unshift(userBlogs);
-  //   }, [dispatch]);
-  //const reduceWords = (str) => {
-  //return str.length > 300 ? str.substring(0, 220) + "..." : str;
-  //};
-  // return (
-  //   <>
-  /* {allBlogs.map((blog) => (
-        <Grid item key={blog.id} style={{ display: "flex" }}>
-          <Card
-            variant="outlined"
-            sx={{
-              maxWidth: 345,
-              mb: 2,
-              pb: 2,
-              "&:hover": {
-                backgroundColor: "silver[400]",
-                transform: "scale(1.01)",
-                boxShadow: "1px 1px 30px silver",
-              },
-            }}
-          >
-            <CardActionArea
-              LinkComponent={Link}
-              to={`/blog/${blog.id}/${blog.title}`}
+  const dispatch = useDispatch();
+  const { allBlogs } = useSelector((state) => state.blog);
+
+  useEffect(() => {
+    dispatch(GetAtLeast6Blogs());
+    dispatch(resetBlog());
+  }, [dispatch]);
+
+  const reduceWords = (str) => {
+    return str.length > 300 ? str.substring(0, 220) + "..." : str;
+  };
+
+  return (
+    <>
+      {allBlogs?.length > 0 &&
+        allBlogs?.map((blog) => (
+          <Grid item key={blog?._id} style={{ display: "flex" }}>
+            <Card
+              key={blog?._id}
+              variant="outlined"
+              sx={{
+                maxWidth: 345,
+                mb: 2,
+                pb: 2,
+                borderRadius: "16px",
+                "&:hover": {
+                  backgroundColor: "silver[400]",
+                  transform: "scale(1.01)",
+                  boxShadow: "1px 1px 30px silver",
+                },
+              }}
             >
-              <CardHeader
-                title={<Typography> {blog.title}</Typography>}
-                subheader="September 14, 2016"
-              />
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Countries
-                </Typography>
+              <CardActionArea
+                LinkComponent={Link}
+                to={`/blog/${blog.category}/${blog._id}/${blog.slug}`}
+              >
+                <CardHeader
+                  avatar={
+                    blog?.author?.avatar ? (
+                      <Avatar
+                        alt={blog?.author?.name}
+                        src={blog?.author?.avatar}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={blog?.author?.name}
+                        sx={{
+                          bgcolor: blog?.author?.color,
+                        }}
+                      >
+                        {blog?.author?.initials}
+                      </Avatar>
+                    )
+                  }
+                  title={
+                    <Typography fontWeight={600}> {blog?.title}</Typography>
+                  }
+                  subheader={format(new Date(blog?.createdAt), "dd-MMM-yyyy")}
+                />
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image="https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60"
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {blog?.category}
+                  </Typography>
 
-                <Typography variant="body2" color="text.primary">
-                  {blog.body}
-                </Typography>
-              </CardContent>
+                  <Typography variant="body2" color="text.primary">
+                    {reduceWords(blog?.content)}
+                  </Typography>
+                </CardContent>
 
-              <CardActions>
-                <Stack
-                  display="flex"
-                  direction="row"
-                  spacing={8}
-                  justifyContent="space-evenly"
-                  alignItems="center"
-                >
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    R
-                  </Avatar>
-                  <Typography variant="body2">Blogger Name</Typography>
-                  <Chip icon={<VisibilityIcon />} label="100" />
-                </Stack>
-              </CardActions>
-            </CardActionArea>
-          </Card>
-        </Grid>
-      ))} */
+                <CardActions>
+                  <Grid
+                    container
+                    display="flex"
+                    spacing={2}
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Grid item>
+                      <Grid container display="flex" spacing={2}>
+                        <Grid item>
+                          <ModeCommentIcon />
+                        </Grid>
+                        <Grid item>
+                          <Typography>{blog?.comments?.length}</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    <Grid item>
+                      <Grid container display="flex" spacing={2}>
+                        <Grid item>
+                          <Favorite
+                            sx={{
+                              color: "#E60000",
+                            }}
+                          />
+                        </Grid>
+                        <Grid item>
+                          <Typography>{blog?.favorites}</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    <Grid item>
+                      <Grid container display="flex" spacing={2}>
+                        <Grid item>
+                          <VisibilityIcon />
+                        </Grid>
+                        <Grid item>
+                          <Typography>100</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </CardActions>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        ))}
+    </>
+  );
 }
-//     </>
-//   );
 
 export default BlogCards2;

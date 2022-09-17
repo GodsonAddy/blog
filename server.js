@@ -15,6 +15,8 @@ mongoose.promise = global.Promise;
 
 const userRoute = require("./config/signup");
 
+const bloggerRoute = require("./config/blogPosts");
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -30,7 +32,7 @@ mongoose.set("debug", true);
 
 app.use("/api/auth/users", userRoute);
 
-//app.use(express.static(path.join(__dirname, "public")));
+app.use("/api/auth/blog", bloggerRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("clients/build"));

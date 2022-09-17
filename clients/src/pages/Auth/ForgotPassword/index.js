@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import { reset } from "../../../features/reducer/userReducer";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useNavigate } from "react-router-dom";
+import "../../../App.css";
 
 function ForgotPasswordChange() {
   const [email, setEmail] = useState("");
@@ -80,16 +81,26 @@ function ForgotPasswordChange() {
   return (
     <Container component="main">
       <CssBaseline />
-      <Link href="/" underline="none">
-        <Typography
-          sx={{ color: "tertiary.main", fontSize: 50 }}
-          component="h1"
-          variant="h4"
-        >
-          vibes<sup>&reg;</sup>
-        </Typography>
-      </Link>
-
+      <Grid container display="flex">
+        <Grid item sm={3}>
+          <Link href="/" underline="none">
+            <Typography
+              variant="h4"
+              sx={{
+                letterSpacing: 5,
+                backgroundColor: "tertiary.main",
+                color: "secondary.main",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              id="logo"
+            >
+              <sup style={{ fontSize: "14px" }}>THE</sup>BLOGMENTARY
+            </Typography>
+          </Link>
+        </Grid>
+      </Grid>
       <Grid
         display="flex"
         flexDirection="column"
@@ -97,79 +108,69 @@ function ForgotPasswordChange() {
         justifyContent="center"
         spacing={2}
         container
-        mt={2}
+        mt={10}
       >
         <Grid item xs={8}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Box component="form" noValidate onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                <Grid
-                  container
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  flexDirection="column"
-                  mt={5}
-                  mb={3}
-                >
-                  <Grid item>
-                    <Typography component="h1" variant="h4" mb={2}>
-                      Reset Password
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    {" "}
-                    <Typography component="h1" variant="body1">
-                      Type in your email to reset your password
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                    value={email}
-                    onChange={handleInputChange}
-                    error={!!forgotError.email}
-                    helperText={forgotError ? forgotError.email : null}
-                  />
-                </Grid>
-              </Grid>
-
-              <LoadingButton
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 3, color: "secondary.main" }}
-                loading={loading}
+          <Box component="form" noValidate onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid
+                container
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                flexDirection="column"
               >
-                Submit
-              </LoadingButton>
-
-              <Grid container justifyContent="center">
                 <Grid item>
-                  <Button
-                    onClick={() => navigate("/login")}
-                    variant="text"
-                    sx={{ color: "#E60000", fontSize: 15, mb: 2 }}
-                  >
-                    Login
-                  </Button>
+                  <Typography component="h1" variant="h4" mb={2}>
+                    Reset Password
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  {" "}
+                  <Typography component="h1" variant="body1">
+                    Type in your email to reset your password
+                  </Typography>
                 </Grid>
               </Grid>
-            </Box>
+              <Grid item xs={12}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={email}
+                  onChange={handleInputChange}
+                  error={!!forgotError.email}
+                  helperText={forgotError ? forgotError.email : null}
+                />
+              </Grid>
+            </Grid>
+
+            <LoadingButton
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 3, color: "secondary.main" }}
+              loading={loading}
+            >
+              Submit
+            </LoadingButton>
+
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Button
+                  onClick={() => navigate("/login")}
+                  variant="text"
+                  sx={{ color: "#E60000", fontSize: 15, mb: 2 }}
+                >
+                  Login
+                </Button>
+              </Grid>
+            </Grid>
           </Box>
         </Grid>
       </Grid>

@@ -1,6 +1,46 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+// Get all users
+export const GetAllUsers = createAsyncThunk(
+  "auth/getallusers",
+
+  async (page, thunkAPI) => {
+    try {
+      const res = await axios.get(`/api/auth/users?page=${page}`);
+      console.log("data", res.data);
+      return res.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.msg) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Get at least 3 users
+export const GetAtLeastThreeUsers = createAsyncThunk(
+  "auth/getatleastthreeusers",
+
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get("/api/auth/users/limit/3");
+
+      return res.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.msg) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const GetUser = createAsyncThunk(
   "auth/getuser",
 
@@ -23,6 +63,26 @@ export const GetUser = createAsyncThunk(
         error.toString();
 
       return rejectWithValue(message);
+    }
+  }
+);
+
+// Get all users
+export const SearchAllUsers = createAsyncThunk(
+  "auth/searchallusers",
+
+  async (query, thunkAPI) => {
+    try {
+      const res = await axios.get(`/api/auth/users/search?q=${query}`);
+
+      return res.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.msg) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -194,3 +254,59 @@ export const VerifyPassword = createAsyncThunk(
 export const logout = createAsyncThunk("auth/logout", async () => {
   await localStorage.removeItem("token");
 });
+
+// View user's profile
+
+export const GetAUserProfile = createAsyncThunk(
+  "auth/getauserprofile",
+  async (params, thunkAPI) => {
+    let id = params.id;
+    let moniker = params.moniker;
+    let page = params.page;
+
+    try {
+      const res = await axios.get(
+        `/api/auth/users/${id}/${moniker}?page=${page}`
+      );
+      console.log("data", res.data);
+      return res.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.msg) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Follow User
+const followUser = async (id, jwtToken) => {
+  const config = {
+    headers: {
+      Authorization: `${jwtToken}`,
+    },
+  };
+
+  const res = await axios.patch(`/api/auth/users/followuser/${id}`, config);
+
+  return res.data;
+};
+
+export const FollowUserProfile = createAsyncThunk(
+  "auth/followuser",
+  async (id, thunkAPI) => {
+    try {
+      const jwtToken = thunkAPI.getState().auth.jwtToken;
+      return await followUser(id, jwtToken);
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.msg) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

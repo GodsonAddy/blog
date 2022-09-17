@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const BlogSchema = new Schema(
@@ -7,11 +7,29 @@ const BlogSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "user",
       required: true,
+      unique: true,
     },
-    likes: Number,
-    content: String,
-    title: String,
-    image: String,
+    favorites: { type: [String], default: [] },
+    category: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    slug: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      default: "",
+    },
     comments: [
       {
         user: {
@@ -19,8 +37,11 @@ const BlogSchema = new Schema(
           ref: "user",
           required: true,
         },
-        content: String,
-        likes: Number,
+        content: {
+          type: String,
+          required: true,
+        },
+        favorites: { type: [String], default: [] },
         date: { type: Date, default: Date.now() },
       },
     ],

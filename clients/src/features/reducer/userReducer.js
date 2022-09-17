@@ -8,6 +8,11 @@ import {
   ResetPassword,
   VerifyPassword,
   GetUser,
+  GetAUserProfile,
+  GetAtLeastThreeUsers,
+  GetAllUsers,
+  SearchAllUsers,
+  FollowUserProfile,
 } from "../actions/userAction";
 
 const jwtToken = localStorage.getItem("token")
@@ -17,12 +22,16 @@ const jwtToken = localStorage.getItem("token")
 const initialState = {
   jwtToken,
   loading: false,
-  authSucess: false,
+  authSuccess: false,
   authError: false,
   authMessage: "",
-  authInitials: "",
-  authMoniker: "",
   authUserInfo: null,
+  atleastthreeusers: [],
+  auserprofile: {},
+  auserpost: [],
+  allusers: [],
+  numberOfPages: "",
+  currentPage: "",
 };
 
 export const authSlice = createSlice({
@@ -33,7 +42,13 @@ export const authSlice = createSlice({
       state.loading = false;
       state.authError = false;
       state.authMessage = "";
-      state.authSucess = false;
+      state.authSuccess = false;
+      state.atleastthreeusers = [];
+      state.auserprofile = {};
+      state.auserpost = [];
+      state.allusers = [];
+      state.numberOfPages = "";
+      state.currentPage = "";
     },
   },
   extraReducers: (builder) => {
@@ -44,7 +59,7 @@ export const authSlice = createSlice({
       .addCase(authRegister.fulfilled, (state, action) => {
         state.jwtToken = action.payload.jwtToken;
         state.loading = false;
-        state.authSucess = true;
+        state.authSuccess = true;
         state.authUserInfo = action.payload;
       })
       .addCase(authRegister.rejected, (state, action) => {
@@ -57,7 +72,7 @@ export const authSlice = createSlice({
       })
       .addCase(authLogin.fulfilled, (state, action) => {
         state.loading = false;
-        state.authSucess = true;
+        state.authSuccess = true;
         state.authUserInfo = action.payload;
 
         state.jwtToken = action.payload.jwtToken;
@@ -76,7 +91,7 @@ export const authSlice = createSlice({
         state.jwtToken = action.payload.jwtToken;
         state.authUserInfo = action.payload;
         state.loading = false;
-        state.authSucess = true;
+        state.authSuccess = true;
       })
       .addCase(authGooglelogin.rejected, (state, action) => {
         state.loading = false;
@@ -105,7 +120,7 @@ export const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(ResetPassword.fulfilled, (state, action) => {
-        state.authSucess = true;
+        state.authSuccess = true;
         state.resetUser = action.payload;
         state.loading = false;
       })
@@ -121,13 +136,84 @@ export const authSlice = createSlice({
       .addCase(GetUser.fulfilled, (state, action) => {
         state.authUserInfo = action.payload;
         state.loading = false;
-        state.authSucess = true;
+        state.authSuccess = true;
       })
       .addCase(GetUser.rejected, (state, action) => {
         state.authMessage = action.payload;
         state.loading = false;
         state.authError = true;
         state.jwtToken = null;
+      })
+      .addCase(GetAtLeastThreeUsers.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(GetAtLeastThreeUsers.fulfilled, (state, action) => {
+        state.atleastthreeusers = action.payload;
+        state.loading = false;
+      })
+      .addCase(GetAtLeastThreeUsers.rejected, (state, action) => {
+        state.authMessage = action.payload;
+        state.loading = false;
+      })
+      .addCase(GetAUserProfile.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(GetAUserProfile.fulfilled, (state, action) => {
+        state.auserpost = action.payload.allusers.blogposts;
+        state.auserprofile = action.payload.allusers;
+        state.currentPage = action.payload.currentPage;
+        state.numberOfPages = action.payload.numberOfPages;
+        state.loading = false;
+      })
+      .addCase(GetAUserProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.authError = true;
+        state.authMessage = action.payload;
+      })
+      .addCase(GetAllUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(GetAllUsers.fulfilled, (state, action) => {
+        state.allusers = action.payload.allusers;
+        state.currentPage = action.payload.currentPage;
+        state.numberOfPages = action.payload.numberOfPages;
+        state.loading = false;
+      })
+      .addCase(GetAllUsers.rejected, (state, action) => {
+        state.loading = false;
+        state.authError = true;
+        state.authMessage = action.payload;
+      })
+      .addCase(SearchAllUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(SearchAllUsers.fulfilled, (state, action) => {
+        // state.search.allnames = action.payload.name;
+        // state.search.allmoniker = action.payload.moniker;
+        // state.search.blogtitle = action.payload.blogposts.title;
+        // state.search.blogcategory = action.payload.blogposts.category;
+        state.allusers = action.payload;
+        state.loading = false;
+      })
+      .addCase(SearchAllUsers.rejected, (state, action) => {
+        state.loading = false;
+        state.authError = true;
+        state.authMessage = action.payload;
+      })
+      .addCase(FollowUserProfile.pending, (state) => {
+        state.loader = true;
+      })
+      .addCase(FollowUserProfile.fulfilled, (state, action) => {
+        state.allusers.map((like) =>
+          like._id === action.payload._id ? action.payload : like
+        );
+        state.loader = false;
+        state.blogSuccess = true;
+      })
+      .addCase(FollowUserProfile.rejected, (state, action) => {
+        state.loader = false;
+        state.blogError = true;
+        state.blogMessage = action.payload;
       });
   },
 });

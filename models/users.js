@@ -6,6 +6,12 @@ const { Schema, model } = mongoose;
 
 const UsersSchema = new Schema(
   {
+    blogposts: {
+      type: Schema.Types.ObjectId,
+      ref: "blogs",
+      required: true,
+      unique: true,
+    },
     first_name: {
       type: String,
       required: true,
@@ -51,10 +57,8 @@ const UsersSchema = new Schema(
     color: {
       type: String,
     },
-    followers: {
-      type: Number,
-      default: 0,
-    },
+    followers: { type: [String], default: [] },
+    following: { type: [String], default: [] },
   },
   { timestamps: true }
 );
@@ -69,6 +73,9 @@ UsersSchema.methods.toJSON = function () {
     avatar: this.avatar,
     initials: this.initials,
     moniker: this.moniker,
+    followers: this.followers,
+    following: this.following,
+    blogposts: this.blogposts,
     color: this.color,
   };
 };

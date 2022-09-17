@@ -1,0 +1,36 @@
+
+.capital {
+    text-indent: 2em;
+    font-size: 3em;
+    font-weight: bold;
+}
+.capital:first-letter{
+    text-transform: capitalize;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.header:first-letter{
+    text-transform: capitalize;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.comment-container{
+    position: relative;
+}
+
+.comment-container::before{
+        content: "";
+        background-color: rgb(170, 170, 170);
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        left: -10px;
+       
+}
+
+.comment-container:not(:first-child) {
+        margin-left: 3rem;
+        margin-top: 1rem;
+}

@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
+const Users = require("../models/users");
 require("dotenv").config();
 
-function auth(req, res, next) {
+async function auth(req, res, next) {
   const token = req.header("Authorization");
 
   if (!token) {
@@ -10,10 +11,11 @@ function auth(req, res, next) {
 
   try {
     const verifyJWT = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = verifyJWT;
+    //req.user = verifyJWT;
+    req.user = await Users.findById(verifyJWT.id).select("-password");
     next();
-  } catch (e) {
-    res.status(403).json({ msg: "Access expired. Please login again" });
+  } catch (error) {
+    res.status(401).json({ msg: "Access expired. Please login again", error });
   }
 }
 

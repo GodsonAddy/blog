@@ -1,14 +1,10 @@
 import React from "react";
-import NavigationBar from "../../components/LandingPage/NavigationBar";
-import LandingFooter from "../../components/LandingPage/landingfooter";
-import { Typography, Container, Grid, Box, CssBaseline } from "@mui/material";
+import { Typography, Container, Grid } from "@mui/material";
+import LandingPage from "../LandingPage";
 
 function PageNotFound() {
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh">
-      <CssBaseline />
-      <NavigationBar />
-
+    <LandingPage>
       <Container>
         <Grid
           container
@@ -36,8 +32,7 @@ function PageNotFound() {
           </Grid>
         </Grid>
       </Container>
-      <LandingFooter />
-    </Box>
+    </LandingPage>
   );
 }
 

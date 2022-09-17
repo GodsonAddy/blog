@@ -1,9 +1,4 @@
-import {
-  Box,
-  Button,
-  OutlinedInput,
-  Typography,
-} from "@mui/material";
+import { Box, Button, OutlinedInput, Typography } from "@mui/material";
 import React from "react";
 
 function SubscribeCard() {
@@ -11,15 +6,15 @@ function SubscribeCard() {
     <Box
       sx={{
         width: "100%",
-        maxWidth: 350,
+        maxWidth: 345,
         bgcolor: "background.paper",
         boxShadow: 2,
-        borderRadius: 2,
+        borderRadius: "16px",
         p: 2,
-        minWidth: 300,
+        //minWidth: 300,
       }}
     >
-      <Typography variant="h6" marginBottom={5}>
+      <Typography variant="h6" marginBottom={5} fontWeight={700}>
         NEWSLETTER
       </Typography>
       <Typography variant="body1" marginBottom={3}>

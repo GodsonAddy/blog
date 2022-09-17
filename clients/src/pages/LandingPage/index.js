@@ -1,11 +1,9 @@
 import React from "react";
-import { Box, CssBaseline, useScrollTrigger, Zoom, Fab } from "@mui/material";
+import { Box, useScrollTrigger, Zoom, Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PropTypes from "prop-types";
-import LandingFooter from "../../../components/LandingPage/landingfooter";
-import NavigationBar from "../../../components/LandingPage/NavigationBar";
-import MainPage from "../../../components/LandingPage/MainPage";
-import CarouselImage from "../../../components/LandingPage/BlogCarousel/carouselImage";
+import LandingFooter from "../../components/LandingPage/landingfooter";
+import NavigationBar from "../../components/LandingPage/NavigationBar";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -47,7 +45,7 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
-const LandingPage = (props) => {
+const LandingPage = ({ children }, props) => {
   return (
     <Box
       sx={{
@@ -56,14 +54,14 @@ const LandingPage = (props) => {
         minHeight: "100vh",
       }}
     >
-      <CssBaseline />
+      {/* <CssBaseline /> */}
 
       <NavigationBar />
       {/* Carousel */}
 
-      <CarouselImage />
-      {/* Main Page */}
-      <MainPage />
+      <Box component="main" sx={{ flexGrow: 1 }}>
+        {children}
+      </Box>
       {/* Scroll to the top*/}
       <ScrollTop {...props}>
         <Fab color="primary" size="small" aria-label="scroll back to top">
