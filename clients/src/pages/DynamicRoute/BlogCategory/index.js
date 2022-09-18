@@ -38,8 +38,8 @@ const BlogCategory = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (page && blogCategory) {
-      dispatch(getBlogByCategory({ category }, page));
+    if (page) {
+      dispatch(getBlogByCategory({ category, page }));
     }
   }, [category, dispatch, page]);
 

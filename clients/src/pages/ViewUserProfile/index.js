@@ -61,7 +61,16 @@ const ViewUserProfile = () => {
     if (page && auserpost && auserprofile) {
       dispatch(GetAUserProfile({ id, moniker }, page));
     }
-  }, [authError, dispatch, id, moniker, navigate, page]);
+  }, [
+    auserpost,
+    auserprofile,
+    authError,
+    dispatch,
+    id,
+    moniker,
+    navigate,
+    page,
+  ]);
 
   console.log(params);
 

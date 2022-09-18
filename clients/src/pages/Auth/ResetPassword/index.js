@@ -66,7 +66,7 @@ function ResetPasswordChange() {
       }
     };
     verifyPassword();
-  }, []);
+  }, [authMessage, dispatch, id, token]);
 
   useEffect(() => {
     if (authError) {

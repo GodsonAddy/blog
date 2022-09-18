@@ -15,7 +15,6 @@ import {
   Paper,
 } from "@mui/material";
 import { getAllBlogs } from "../../features/actions/blogAction";
-import { resetBlog } from "../../features/reducer/blogReducer";
 import { useSelector, useDispatch } from "react-redux";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Link, useLocation } from "react-router-dom";
@@ -40,7 +39,7 @@ function AllBlogs() {
     if (page && allBlogs) {
       dispatch(getAllBlogs(page));
     }
-  }, [dispatch, page]);
+  }, [allBlogs, dispatch, page]);
 
   const reduceWords = (str) => {
     return str.length > 300 ? str.substring(0, 220) + "..." : str;

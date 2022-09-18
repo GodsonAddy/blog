@@ -6,7 +6,6 @@ import {
   Button,
   IconButton,
   Box,
-  Grid,
   Container,
   Menu,
   MenuItem,
@@ -15,7 +14,6 @@ import {
   ListItemText,
   ListItemIcon,
   Tooltip,
-  Divider,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { logout } from "../../features/actions/userAction";

@@ -68,10 +68,9 @@ function ReadFullBlog() {
     if (blogError) {
       navigate("/404");
     }
-    if (aSingleBlog) {
-      dispatch(getASingleBlog({ category, id, slug }));
-    }
-  }, [blogError]);
+
+    dispatch(getASingleBlog({ category, id, slug }));
+  }, [blogError, category, dispatch, id, navigate, slug]);
 
   console.log(params);
 

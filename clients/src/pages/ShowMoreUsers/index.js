@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Grid,
@@ -42,7 +42,7 @@ function ShowMoreUsers() {
   let from = location.state?.from?.pathname || "/login";
 
   useEffect(() => {
-    if (page && allusers) {
+    if (page) {
       dispatch(GetAllUsers(page));
     }
   }, [dispatch, page]);
