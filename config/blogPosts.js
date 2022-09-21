@@ -7,6 +7,7 @@ const Users = require("../models/users");
 const NewsAPI = require("newsapi");
 
 const newsAPI = new NewsAPI(process.env.NEWSAPI_KEY);
+
 //Get news
 router.get("/news", async (req, res) => {
   const { page } = req.query;
