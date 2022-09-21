@@ -1,0 +1,12 @@
+.hero {
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../images/vibes.png"); */
+    background-image:  url("../../../images/hero.jpg"), linear-gradient(-45deg, #fbbe6b, #f13ea3);
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-color: white;
+    width: 100%;
+    min-height: 90vh;
+}

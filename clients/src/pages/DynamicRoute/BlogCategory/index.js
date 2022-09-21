@@ -201,11 +201,6 @@ const BlogCategory = () => {
                           </CardActionArea>
                         </Card>
                       </Grid>
-                      <Grid item mt={10}>
-                        <Paper sx={{ p: 2 }}>
-                          <Paginate page={page} />
-                        </Paper>
-                      </Grid>
                     </Box>
                   ))}
                 </Grid>
@@ -214,6 +209,20 @@ const BlogCategory = () => {
           </Grid>
         </Container>
       </Box>
+      {blogCategory?.length !== 0 && (
+        <Grid
+          container
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item mt={10}>
+            <Paper sx={{ p: 2 }}>
+              <Paginate page={page} />
+            </Paper>
+          </Grid>
+        </Grid>
+      )}
     </LandingPage>
   );
 };

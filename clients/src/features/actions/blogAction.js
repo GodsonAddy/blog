@@ -406,3 +406,23 @@ export const deleteMyComment = createAsyncThunk(
     }
   }
 );
+
+// Get all news
+
+export const ReadNews = createAsyncThunk(
+  "blog/readnews",
+  async (page, thunkAPI) => {
+    try {
+      const res = await axios.get(`/api/auth/blog/news?page=${page}`);
+      console.log("data", res.data);
+      return res.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.msg) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

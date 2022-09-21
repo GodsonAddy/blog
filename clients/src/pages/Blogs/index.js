@@ -195,11 +195,6 @@ function AllBlogs() {
                           </CardActionArea>
                         </Card>
                       </Grid>
-                      <Grid item mt={10}>
-                        <Paper sx={{ p: 2 }}>
-                          <Paginate page={page} />
-                        </Paper>
-                      </Grid>
                     </Box>
                   ))}
                 </Grid>
@@ -208,6 +203,20 @@ function AllBlogs() {
           </Grid>
         </Container>
       </Box>
+      {allBlogs?.length !== 0 && (
+        <Grid
+          container
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item mt={10}>
+            <Paper sx={{ p: 2 }}>
+              <Paginate page={page} />
+            </Paper>
+          </Grid>
+        </Grid>
+      )}
     </LandingPage>
   );
 }

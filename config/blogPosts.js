@@ -3,7 +3,35 @@ const router = express.Router();
 const Blogs = require("../models/posts");
 const auth = require("../middleware/auth");
 const Users = require("../models/users");
+const NewsAPI = require("newsapi");
 require("dotenv").config();
+
+const newsapi = new NewsAPI(process.env.NEWSAPI_KEY);
+
+//Get news
+router.get("/news", async (req, res) => {
+  const { page } = req.query;
+  try {
+    const news = await newsapi.v2.topHeadlines({
+      language: "en",
+      category: "business",
+      pageSize: 20,
+      page: Number(page),
+      country: "us",
+    });
+    const limit = 20;
+
+    const total = await news.totalResults;
+
+    res.status(200).json({
+      allnews: news,
+      currentPage: Number(page),
+      numberOfPages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Internal server error", error });
+  }
+});
 
 // Get all blog posts
 router.get("/", async (req, res) => {
@@ -295,4 +323,5 @@ router.post("/comment/:id", auth, async (req, res) => {
     return res.status(500).json({ msg: "Internal server error", error });
   }
 });
+
 module.exports = router;

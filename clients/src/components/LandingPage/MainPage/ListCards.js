@@ -8,6 +8,7 @@ import {
   Typography,
   ListItemButton,
   CircularProgress,
+  Box,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { GetAtLeast3Blogs } from "../../../features/actions/blogAction";
@@ -44,7 +45,16 @@ export default function AlignItemsList() {
         </ListSubheader>
       }
     >
-      {loader && <CircularProgress />}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {loader && <CircularProgress />}
+      </Box>
+
       {allBlogs?.length > 0 ? (
         allBlogs?.map((blog) => (
           <ListItemButton

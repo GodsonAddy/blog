@@ -108,7 +108,7 @@ function ReadFullBlog() {
             ? `You and ${aSingleBlog?.favorites?.length - 1} others`
             : `${aSingleBlog?.favorites?.length} Like ${
                 aSingleBlog?.favorites?.length > 1 ? "s" : ""
-              }`}{" "}
+              }`}
         </>
       ) : (
         <>
@@ -275,12 +275,7 @@ function ReadFullBlog() {
                         </Link>
                       </Grid>
                       <Grid item>
-                        <Grid
-                          container
-                          // justifyContent="flex-start"
-                          // alignItems="center"
-                          spacing={2}
-                        >
+                        <Grid container spacing={2}>
                           <Grid item>
                             <IconButton
                               sx={{
@@ -620,49 +615,58 @@ function ReadFullBlog() {
                 <Grid
                   container
                   display="flex"
-                  justifyContent="space-between"
+                  flexDirection="column"
                   spacing={2}
                 >
                   {aSingleBlog?.comments?.map((comment, index) => (
                     <Grid item key={index}>
-                      <Grid item>
-                        {comment?.user?.avatar ? (
-                          <Avatar
-                            alt={comment?.user?.name}
-                            src={comment?.user?.avatar}
-                          />
-                        ) : (
-                          <Avatar
-                            alt={comment?.user?.name}
-                            sx={{
-                              bgcolor: comment?.user?.color,
-                            }}
-                          >
-                            {" "}
-                            {comment?.user?.initials}{" "}
-                          </Avatar>
-                        )}
-                      </Grid>
-                      <Grid item>
-                        <Grid container display="flex" direction="column">
-                          <Grid item>
-                            <Typography variant="h6">
-                              {comment?.user?.name}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Link
-                              // href={`/user/${user._id}/${user.moniker}`}
-                              underline="hover"
-                            >
-                              {comment?.user?.moniker}
-                            </Link>
+                      <Grid
+                        container
+                        display="flex"
+                        justifyContent="space-between"
+                        spacing={2}
+                      >
+                        <Grid item>
+                          <Grid container display="flex" spacing={2}>
+                            <Grid item>
+                              {comment?.user?.avatar ? (
+                                <Avatar
+                                  alt={comment?.user?.name}
+                                  src={comment?.user?.avatar}
+                                />
+                              ) : (
+                                <Avatar
+                                  alt={comment?.user?.name}
+                                  sx={{
+                                    bgcolor: comment?.user?.color,
+                                  }}
+                                >
+                                  {comment?.user?.initials}
+                                </Avatar>
+                              )}
+                            </Grid>
+                            <Grid item>
+                              <Grid container display="flex" direction="column">
+                                <Grid item>
+                                  <Typography variant="h6">
+                                    {comment?.user?.name}
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  <Link
+                                    href={`/user/${comment?.user?._id}/${comment?.user?.moniker}`}
+                                    underline="hover"
+                                  >
+                                    {comment?.user?.moniker}
+                                  </Link>
+                                </Grid>
+                              </Grid>
+                            </Grid>
                           </Grid>
                         </Grid>
-                      </Grid>
-
-                      <Grid item>
-                        <Typography>{comment?.content?.createdAt}</Typography>
+                        <Grid item>
+                          <Typography>{comment?.content?.createdAt}</Typography>
+                        </Grid>
                       </Grid>
 
                       <Grid
@@ -771,20 +775,24 @@ function ReadFullBlog() {
                       spacing={2}
                     >
                       <Grid item>
-                        <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
-                      </Grid>
-                      <Grid item>
-                        <Grid container display="flex" direction="column">
+                        <Grid container display="flex" spacing={2}>
                           <Grid item>
-                            <Typography variant="h6">Name</Typography>
+                            <Avatar sx={{ bgcolor: red[500] }}>GA</Avatar>
                           </Grid>
                           <Grid item>
-                            <Link
-                              // href={`/user/${user._id}/${user.moniker}`}
-                              underline="hover"
-                            >
-                              @moniker
-                            </Link>
+                            <Grid container display="flex" direction="column">
+                              <Grid item>
+                                <Typography variant="h6">Name</Typography>
+                              </Grid>
+                              <Grid item>
+                                <Link
+                                  // href={`/user/${user._id}/${user.moniker}`}
+                                  underline="hover"
+                                >
+                                  @moniker
+                                </Link>
+                              </Grid>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
