@@ -6,12 +6,12 @@ const auth = require("../middleware/auth");
 const Users = require("../models/users");
 const NewsAPI = require("newsapi");
 
+const newsAPI = new NewsAPI(process.env.NEWSAPI_KEY);
 //Get news
 router.get("/news", async (req, res) => {
   const { page } = req.query;
   try {
-    const newsapi = new NewsAPI(process.env.NEWSAPI_KEY);
-    const news = await newsapi.v2.topHeadlines({
+    const news = await newsAPI.v2.topHeadlines({
       language: "en",
       category: "business",
       pageSize: 20,
@@ -21,7 +21,7 @@ router.get("/news", async (req, res) => {
     const limit = 20;
 
     const total = await news.totalResults;
-    console.log("api", news);
+
     res.status(200).json({
       allnews: news,
       currentPage: Number(page),
