@@ -21,8 +21,6 @@ import { styled } from "@mui/material/styles";
 import "./index.css";
 import ButtonBase from "@mui/material/ButtonBase";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Box } from "@mui/system";
 import vibes from "../../../images/vibes.png";
 import {
@@ -72,8 +70,6 @@ function ReadFullBlog() {
     dispatch(getASingleBlog({ category, id, slug }));
   }, [blogError, category, dispatch, id, navigate, slug]);
 
-  console.log(params);
-
   const handleOpenComment = () => {
     setOpenComment(!openComment);
   };
@@ -83,7 +79,6 @@ function ReadFullBlog() {
   };
 
   const FollowUser = async (id) => {
-    console.log("id", id);
     if (!jwtToken) {
       navigate(from, { replace: true });
     }
@@ -91,8 +86,6 @@ function ReadFullBlog() {
   };
 
   const FavoritePost = (id) => {
-    console.log("id", id);
-
     dispatch(favoriteMyBlog(id));
   };
 

@@ -21,7 +21,7 @@ TokenSchema.pre("save", async function (next) {
     this.token = hashed;
     next();
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     next();
   }
 });

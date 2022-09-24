@@ -34,7 +34,7 @@ function MediaCard() {
   }, [dispatch]);
 
   const FollowUser = async (id) => {
-    console.log("id", id);
+    //console.log("id", id);
     if (!jwtToken) {
       navigate(from, { replace: true });
     }

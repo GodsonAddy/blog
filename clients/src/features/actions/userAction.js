@@ -8,7 +8,7 @@ export const GetAllUsers = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       const res = await axios.get(`/api/auth/users?page=${page}`);
-      console.log("data", res.data);
+
       return res.data;
     } catch (error) {
       const message =
@@ -116,7 +116,7 @@ const resetpassword = async (userData) => {
   let password = userData.password;
   const URL = `/api/auth/users/reset-password?id=${id}&token=${token}`;
   const res = await axios.post(URL, { password });
-  console.log("data", res.data);
+  //console.log("data", res.data);
   if (res.data) {
     localStorage.setItem("token", JSON.stringify(res.data));
   }
@@ -268,7 +268,7 @@ export const GetAUserProfile = createAsyncThunk(
       const res = await axios.get(
         `/api/auth/users/${id}/${moniker}?page=${page}`
       );
-      console.log("data", res.data);
+      //console.log("data", res.data);
       return res.data;
     } catch (error) {
       const message =

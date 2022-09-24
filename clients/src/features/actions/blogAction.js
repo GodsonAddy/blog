@@ -9,7 +9,7 @@ export const getAllBlogs = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       const res = await axios.get(`/api/auth/blog?page=${page}`);
-      console.log("data", res.data);
+
       return res.data;
     } catch (error) {
       const message =
@@ -69,7 +69,7 @@ export const getBlogByCategory = createAsyncThunk(
 
     try {
       const res = await axios.get(`/api/auth/blog/${category}?page=${page}`);
-      console.log("data", res.data);
+
       return res.data;
     } catch (error) {
       const message =
@@ -93,7 +93,7 @@ export const getASingleBlog = createAsyncThunk(
 
     try {
       const res = await axios.get(`/api/auth/blog/${category}/${id}/${slug}`);
-      console.log("data", res.data);
+
       return res.data;
     } catch (error) {
       const message =
@@ -154,7 +154,7 @@ export const getMyBlogs = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const jwtToken = thunkAPI.getState().auth.jwtToken;
-      console.log("jwt", jwtToken);
+      //console.log("jwt", jwtToken);
       return await getBlogs(jwtToken);
     } catch (error) {
       const message =
@@ -409,12 +409,14 @@ export const deleteMyComment = createAsyncThunk(
 
 // Get all news
 
-export const ReadNews = createAsyncThunk(
-  "blog/readnews",
+export const GetNews = createAsyncThunk(
+  "blog/getnews",
   async (page, thunkAPI) => {
     try {
-      const res = await axios.get(`/api/auth/blog/news?page=${page}`);
-      console.log("data", res.data);
+      const res = await axios.get(
+        `https://newsapi.org/v2/top-headlines?language=en&country=us&category=business&pageSize=20&page=${page}&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
+      );
+
       return res.data;
     } catch (error) {
       const message =

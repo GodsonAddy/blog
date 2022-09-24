@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import LandingPage from "../LandingPage";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { ReadNews } from "../../features/actions/blogAction";
+import { GetNews } from "../../features/actions/blogAction";
 import {
   Box,
   CircularProgress,
@@ -37,7 +37,7 @@ function News() {
 
   useEffect(() => {
     if (page) {
-      dispatch(ReadNews(page));
+      dispatch(GetNews(page));
     }
   }, [dispatch, page]);
   return (

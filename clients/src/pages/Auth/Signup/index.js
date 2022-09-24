@@ -122,7 +122,7 @@ function SignUp() {
 
     if (authGooglelogin.fulfilled.match(resultAction)) {
       const user = resultAction.payload;
-      console.log("user", user);
+
       toast.success(`Welcome back ${user.name}`);
       const toaster = () => {
         navigate(from, { replace: true });

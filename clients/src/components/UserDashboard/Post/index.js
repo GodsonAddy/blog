@@ -63,7 +63,7 @@ function Posted() {
 
   const PostBlog = async (e) => {
     e.preventDefault();
-    console.log("e", e);
+
     if (!title) {
       setPostError((prev) => {
         return { ...prev, title: "Title is required" };
@@ -78,13 +78,13 @@ function Posted() {
     }
 
     const body = { title, content, category };
-    console.log("body", body);
-    console.log("category", category);
+    //console.log("body", body);
+    //console.log("category", category);
     const resultAction = await dispatch(createBlog(body));
 
     if (createBlog.fulfilled.match(resultAction)) {
       const user = resultAction.payload;
-      console.log("user", user);
+      //console.log("user", user);
       toast.success(user.msg);
       setFormValues(initialState);
       setCategory("");

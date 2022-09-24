@@ -10,7 +10,7 @@ import {
   GetAtLeast6Blogs,
   getBlogByCategory,
   getMyBlogs,
-  ReadNews,
+  GetNews,
   updateMyBlog,
 } from "../actions/blogAction";
 import { format } from "date-fns";
@@ -200,18 +200,24 @@ export const blogSlice = createSlice({
         state.loader = false;
         state.blogError = true;
       })
-      .addCase(ReadNews.pending, (state) => {
+      .addCase(GetNews.pending, (state) => {
         state.loader = true;
       })
-      .addCase(ReadNews.fulfilled, (state, action) => {
-        state.getnews = action.payload.allnews.articles;
-        // state.currentPage = action.payload.currentPage;
-        state.numberOfPages = action.payload.numberOfPages;
-        console.log("total", state.numberOfPages);
+      .addCase(GetNews.fulfilled, (state, action) => {
+        const limit = 20;
+
+        const total = action.payload.totalResults;
+
+        const numberofpages = Math.ceil(total / limit);
+
+        state.getnews = action.payload.articles;
+
+        state.numberOfPages = numberofpages;
+
         state.loader = false;
         state.blogSuccess = true;
       })
-      .addCase(ReadNews.rejected, (state, action) => {
+      .addCase(GetNews.rejected, (state, action) => {
         state.loader = false;
         state.blogError = true;
         state.blogMessage = action.payload;

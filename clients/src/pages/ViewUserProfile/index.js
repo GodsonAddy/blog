@@ -58,28 +58,16 @@ const ViewUserProfile = () => {
     if (authError) {
       navigate("/404");
     }
-    if (page && auserpost && auserprofile) {
-      dispatch(GetAUserProfile({ id, moniker }, page));
+    if (page) {
+      dispatch(GetAUserProfile({ id, moniker, page }));
     }
-  }, [
-    auserpost,
-    auserprofile,
-    authError,
-    dispatch,
-    id,
-    moniker,
-    navigate,
-    page,
-  ]);
-
-  console.log(params);
+  }, [authError, dispatch, id, moniker, navigate, page]);
 
   const reduceWords = (str) => {
     return str.length > 300 ? str.substring(0, 220) + "..." : str;
   };
 
   const FollowUser = async (id) => {
-    console.log("id", id);
     if (!jwtToken) {
       navigate(from, { replace: true });
     }

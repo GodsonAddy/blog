@@ -34,8 +34,6 @@ function ResetPasswordChange() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(location);
-
   const { authMessage, authError, loading } = useSelector(
     (state) => state.auth
   );
@@ -50,11 +48,11 @@ function ResetPasswordChange() {
       if (VerifyPassword.fulfilled.match(resultActions)) {
         const user = resultActions.payload;
         toast.success(user.msg);
-        console.log("data", user);
+        //console.log("data", user);
         setResetLoader(false);
         setValid(true);
       } else {
-        console.log(authMessage);
+        //console.log(authMessage);
         if (resultActions.payload) {
           toast.error(`Login failed: ${resultActions.payload}`);
 

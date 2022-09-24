@@ -7,6 +7,7 @@ export const store = configureStore({
     auth: authReducer,
     blog: blogReducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       immutableCheck: false,

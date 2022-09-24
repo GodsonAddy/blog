@@ -48,7 +48,6 @@ function ShowMoreUsers() {
   }, [dispatch, page]);
 
   const FollowUser = async (id) => {
-    console.log("id", id);
     if (!jwtToken) {
       navigate(from, { replace: true });
     }
