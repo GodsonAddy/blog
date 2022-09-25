@@ -75,8 +75,8 @@ function MainPage() {
           </Grid>
         </Container>
       </Box>
-      <Box my={5}>
-        <Container>
+      <Container>
+        <Box my={5}>
           <Grid
             container
             display="flex"
@@ -115,8 +115,8 @@ function MainPage() {
               </Grid>
             </Grid>
           </Grid>
-        </Container>
-      </Box>
+        </Box>
+      </Container>
     </LandingPage>
   );
 }

@@ -6,11 +6,11 @@ function About() {
   return (
     <LandingPage>
       <CssBaseline />
-      <Box sx={{ my: 10 }}>
-        <Container>
-          <Typography>ABOUT</Typography>
-        </Container>
-      </Box>
+      <Container>
+        <Box sx={{ my: 10 }}>
+          <Typography>About</Typography>
+        </Box>
+      </Container>
     </LandingPage>
   );
 }

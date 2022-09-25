@@ -2,20 +2,19 @@ import React, { useEffect } from "react";
 import LandingPage from "../LandingPage";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { GetNews } from "../../features/actions/blogAction";
 import {
   Box,
   CircularProgress,
-  Container,
   Grid,
   Paper,
   Typography,
   Link,
   CssBaseline,
+  Container,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { format } from "date-fns";
 import { Paginate } from "./util";
+import { GetAllNews } from "../../features/actions/newsAction";
 
 const Img = styled("img")({
   maxWidth: "20rem",
@@ -27,7 +26,7 @@ function useQuery() {
 }
 
 function News() {
-  const { getnews, loader } = useSelector((state) => state.blog);
+  const { newsContents, loader } = useSelector((state) => state.news);
 
   const query = useQuery();
 
@@ -37,15 +36,14 @@ function News() {
 
   useEffect(() => {
     if (page) {
-      dispatch(GetNews(page));
+      dispatch(GetAllNews(page));
     }
   }, [dispatch, page]);
   return (
     <LandingPage>
       <CssBaseline />
-
-      <Box sx={{ my: 10 }}>
-        <Container>
+      <Container>
+        <Box sx={{ my: 10 }}>
           <Grid
             container
             display="flex"
@@ -54,7 +52,9 @@ function News() {
             spacing={2}
             flexDirection="column"
           >
-            {!getnews?.length && !loader && <Typography>No News...</Typography>}
+            {!newsContents?.length && !loader && (
+              <Typography>No News...</Typography>
+            )}
             {loader ? (
               <CircularProgress />
             ) : (
@@ -65,7 +65,7 @@ function News() {
                   spacing={2}
                   flexDirection="column"
                 >
-                  {getnews?.map((news, index) => (
+                  {newsContents?.map((news, index) => (
                     <Grid item key={index}>
                       <Link
                         href={news.url}
@@ -97,10 +97,7 @@ function News() {
                             columns={{ xs: 4, sm: 8, md: 12 }}
                           >
                             <Grid item xs={12} sm={4} lg={4}>
-                              <Img
-                                alt={news.description}
-                                src={news.urlToImage}
-                              />
+                              <Img alt={news.description} src={news.urlImage} />
                             </Grid>
                             <Grid item xs={12} sm={8} lg={8}>
                               <Grid
@@ -114,7 +111,7 @@ function News() {
                                     variant="h5"
                                     sx={{ color: "crimson", fontWeight: 700 }}
                                   >
-                                    {news.source.name}
+                                    {news.source}
                                   </Typography>
                                 </Grid>
                                 <Grid item>
@@ -136,10 +133,7 @@ function News() {
                                     </Grid>
                                     <Grid item>
                                       <Typography variant="span">
-                                        {format(
-                                          new Date(news.publishedAt),
-                                          "dd-MMM-yyyy"
-                                        )}
+                                        {news.timestamp}
                                       </Typography>
                                     </Grid>
                                   </Grid>
@@ -155,22 +149,22 @@ function News() {
               </Grid>
             )}
           </Grid>
-        </Container>
-      </Box>
-      {getnews?.length !== 0 && (
-        <Grid
-          container
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Grid item mt={10}>
-            <Paper sx={{ p: 2 }}>
-              <Paginate page={page} />
-            </Paper>
+        </Box>
+        {newsContents?.length !== 0 && (
+          <Grid
+            container
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item mt={10}>
+              <Paper sx={{ p: 2 }}>
+                <Paginate page={page} />
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
-      )}
+        )}
+      </Container>
     </LandingPage>
   );
 }

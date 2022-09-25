@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import {
   Box,
   Grid,
-  Container,
   Paper,
   CircularProgress,
   Typography,
@@ -11,6 +10,7 @@ import {
   Divider,
   Link,
   Collapse,
+  Container,
 } from "@mui/material";
 import LandingPage from "../LandingPage";
 import { useSelector, useDispatch } from "react-redux";

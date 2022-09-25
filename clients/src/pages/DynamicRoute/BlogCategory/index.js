@@ -13,9 +13,10 @@ import {
   CardContent,
   Avatar,
   Box,
-  Container,
   CircularProgress,
   Paper,
+  Container,
+  Chip,
 } from "@mui/material";
 import { format } from "date-fns";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -56,8 +57,8 @@ const BlogCategory = () => {
   }
   return (
     <LandingPage>
-      <Box my={10}>
-        <Container>
+      <Container>
+        <Box my={10}>
           <Grid
             container
             display="flex"
@@ -137,13 +138,15 @@ const BlogCategory = () => {
                               alt="green iguana"
                             />
                             <CardContent>
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                              >
-                                {blog?.category}
-                              </Typography>
+                              <Chip
+                                label={blog?.category}
+                                sx={{
+                                  bgcolor: blog?.author?.color
+                                    ? blog?.author?.color
+                                    : "primary.main",
+                                  color: "secondary.main",
+                                }}
+                              />
 
                               <Typography variant="body2" color="text.primary">
                                 {reduceWords(blog?.content)}
@@ -207,22 +210,22 @@ const BlogCategory = () => {
               </Grid>
             )}
           </Grid>
-        </Container>
-      </Box>
-      {blogCategory?.length !== 0 && (
-        <Grid
-          container
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Grid item mt={10}>
-            <Paper sx={{ p: 2 }}>
-              <Paginate page={page} />
-            </Paper>
+        </Box>
+        {blogCategory?.length !== 0 && (
+          <Grid
+            container
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item mt={10}>
+              <Paper sx={{ p: 2 }}>
+                <Paginate page={page} />
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
-      )}
+        )}
+      </Container>
     </LandingPage>
   );
 };

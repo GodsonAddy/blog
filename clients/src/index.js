@@ -7,6 +7,8 @@ import { store } from "./features/store";
 import { unstable_createMuiStrictModeTheme as createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material/styles";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const theme = createTheme({
   typography: {

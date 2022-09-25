@@ -10,7 +10,6 @@ import {
   GetAtLeast6Blogs,
   getBlogByCategory,
   getMyBlogs,
-  GetNews,
   updateMyBlog,
 } from "../actions/blogAction";
 import { format } from "date-fns";
@@ -29,7 +28,6 @@ const initialState = {
   numberOfPages: "",
   currentPage: "",
   deleteBlog: [],
-  getnews: [],
 };
 
 export const blogSlice = createSlice({
@@ -199,28 +197,6 @@ export const blogSlice = createSlice({
         state.blogMessage = action.payload;
         state.loader = false;
         state.blogError = true;
-      })
-      .addCase(GetNews.pending, (state) => {
-        state.loader = true;
-      })
-      .addCase(GetNews.fulfilled, (state, action) => {
-        const limit = 20;
-
-        const total = action.payload.totalResults;
-
-        const numberofpages = Math.ceil(total / limit);
-
-        state.getnews = action.payload.articles;
-
-        state.numberOfPages = numberofpages;
-
-        state.loader = false;
-        state.blogSuccess = true;
-      })
-      .addCase(GetNews.rejected, (state, action) => {
-        state.loader = false;
-        state.blogError = true;
-        state.blogMessage = action.payload;
       });
   },
 });

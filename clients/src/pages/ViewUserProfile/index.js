@@ -11,7 +11,6 @@ import {
   Button,
   Card,
   CardContent,
-  Container,
   Grid,
   Typography,
   CardActions,
@@ -23,6 +22,7 @@ import {
   Chip,
   CircularProgress,
   Paper,
+  Container,
 } from "@mui/material";
 import GroupIcon from "@mui/icons-material/Group";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
@@ -76,8 +76,8 @@ const ViewUserProfile = () => {
 
   return (
     <LandingPage>
-      <Box my={10}>
-        <Container>
+      <Container>
+        <Box my={10}>
           <Grid
             container
             display="flex"
@@ -239,9 +239,15 @@ const ViewUserProfile = () => {
                           alt="green iguana"
                         />
                         <CardContent>
-                          <Typography gutterBottom variant="h5" component="div">
-                            {blog?.category}
-                          </Typography>
+                          <Chip
+                            label={blog?.category}
+                            sx={{
+                              bgcolor: blog?.author?.color
+                                ? blog?.author?.color
+                                : "primary.main",
+                              color: "secondary.main",
+                            }}
+                          />
 
                           <Typography variant="body2" color="text.primary">
                             {reduceWords(blog?.content)}
@@ -295,8 +301,8 @@ const ViewUserProfile = () => {
               </Grid>
             )}
           </Grid>
-        </Container>
-      </Box>
+        </Box>
+      </Container>
     </LandingPage>
   );
 };

@@ -17,6 +17,8 @@ const userRoute = require("./config/signup");
 
 const bloggerRoute = require("./config/blogPosts");
 
+const newsRoute = require("./config/newsapi");
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -33,6 +35,8 @@ mongoose.set("debug", true);
 app.use("/api/auth/users", userRoute);
 
 app.use("/api/auth/blog", bloggerRoute);
+
+app.use("/api/auth/news", newsRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("clients/build"));

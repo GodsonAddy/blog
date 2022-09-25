@@ -406,25 +406,3 @@ export const deleteMyComment = createAsyncThunk(
     }
   }
 );
-
-// Get all news
-
-export const GetNews = createAsyncThunk(
-  "blog/getnews",
-  async (page, thunkAPI) => {
-    try {
-      const res = await axios.get(
-        `https://newsapi.org/v2/top-headlines?language=en&country=us&category=business&pageSize=20&page=${page}&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
-      );
-
-      return res.data;
-    } catch (error) {
-      const message =
-        (error.response && error.response.data && error.response.data.msg) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export const Paginate = ({ page }) => {
-  const { numberOfPages } = useSelector((state) => state.blog);
+  const { numberOfPages } = useSelector((state) => state.news);
 
   return (
     <Stack spacing={2}>

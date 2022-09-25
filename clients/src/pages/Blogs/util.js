@@ -9,7 +9,7 @@ export const Paginate = ({ page }) => {
   return (
     <Stack spacing={2}>
       <Pagination
-        count={numberOfPages}
+        count={Number(numberOfPages)}
         page={Number(page) || 1}
         variant="outlined"
         color="primary"

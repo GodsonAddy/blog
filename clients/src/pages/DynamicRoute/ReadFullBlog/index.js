@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Container,
   Paper,
   Grid,
   Typography,
@@ -10,6 +9,7 @@ import {
   OutlinedInput,
   Link,
   CircularProgress,
+  Container,
 } from "@mui/material";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { red } from "@mui/material/colors";
@@ -33,6 +33,8 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ReplyIcon from "@mui/icons-material/Reply";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import { FollowUserProfile } from "../../../features/actions/userAction";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Img = styled("img")({
   margin: "auto",

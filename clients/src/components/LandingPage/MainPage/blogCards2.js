@@ -9,6 +9,7 @@ import {
   Typography,
   CardContent,
   CardMedia,
+  Chip,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -86,9 +87,15 @@ function BlogCards2() {
                   alt="green iguana"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {blog?.category}
-                  </Typography>
+                  <Chip
+                    label={blog?.category}
+                    sx={{
+                      bgcolor: blog?.author?.color
+                        ? blog?.author?.color
+                        : "primary.main",
+                      color: "secondary.main",
+                    }}
+                  />
 
                   <Typography variant="body2" color="text.primary">
                     {reduceWords(blog?.content)}
