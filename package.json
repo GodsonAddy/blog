@@ -9,7 +9,8 @@
     "server": "nodemon server.js",
     "clients": "npm start --prefix clients",
     "dev": "concurrently \"npm run server\" \"npm run clients\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix clients && npm run build --prefix clients"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix clients && npm run build --prefix clients",
+    "preinstall": "npx npm-force-resolutions"
   },
   "repository": {
     "type": "git",
@@ -35,9 +36,13 @@
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.2",
     "nodemailer": "^6.7.8",
+    "npm-force-resolutions": "^0.0.10",
     "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "resolutions": {
+    "cheerio": "1.0.0-rc.10"
   }
 }
