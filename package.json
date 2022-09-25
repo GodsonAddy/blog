@@ -24,7 +24,6 @@
   "dependencies": {
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
-    "cheerio": "^1.0.0-rc.12",
     "concurrently": "^7.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -38,7 +37,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19",
-    "cheerio": "=1.0.0-rc.3"
+    "cheerio": "^1.0.0-rc.3",
+    "nodemon": "^2.0.19"
   }
 }
