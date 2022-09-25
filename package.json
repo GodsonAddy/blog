@@ -38,6 +38,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "cheerio": "=1.0.0-rc.3"
   }
 }
