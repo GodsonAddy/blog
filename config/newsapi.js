@@ -16,8 +16,8 @@ const newsfeed = [
 router.get("/", async (req, res) => {
   const { page } = req.query;
   const limit = 20;
-  const startIndex = Number(page - 1) * limit;
-  const endIndex = Number(page) * limit;
+  const startIndex = (Number(page - 1)) * limit;
+  const endIndex = (Number(page)) * limit;
 
   newsfeed.forEach(async (feed) => {
     const feeder = await axios.get(feed.address);
