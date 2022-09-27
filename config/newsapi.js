@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const cheerio = require("cheerio");
 const axios = require("axios");
+const cheerio = require("cheerio");
 
 // Get all news
 
